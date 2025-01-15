@@ -12,18 +12,6 @@ import Contact from "./pages/Contact";
 import Account from "./pages/Account";
 
 function App() {
-  const [count, setCount] = useState(0);
-
-  const fetchData = async () => {
-    const response = await axios.get('http://localhost:8080/api');
-    const data = response.data.owoce;
-    console.log(data);
-  };
-
-  useEffect(() => {
-    fetchData();
-  }, []);
-
   return (
     <>
       <Router>
