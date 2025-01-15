@@ -1,7 +1,6 @@
 import axios from 'axios';
 import { useState, useEffect } from 'react'
 
-import './index.css';
 
 function App() {
   const [count, setCount] = useState(0);
@@ -17,7 +16,7 @@ function App() {
   }, []);
 
   return (
-    <div className="bg-blue-500 text-white text-center p-4">
+    <div className="bg-blue-500 text-red text-center p-4">
       <h1 className="text-4xl font-bold">Jeśli widzisz ten styl, Tailwind działa!</h1>
     </div>
   );
