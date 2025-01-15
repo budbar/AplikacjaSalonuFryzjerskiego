@@ -30,8 +30,6 @@ export const register = async (req, res) => {
 };
 
 export const login = async (req, res) => {
-    debugger;
-
     const {email, password} = req.body;
 
     try {
@@ -49,6 +47,17 @@ export const login = async (req, res) => {
             return res.status(400).json({ message: "Nieprawidłowy email lub hasło." });
 
         const token = jwt.sign({ id: user.id }, process.env.JWT_SECRET, { expiresIn: "1h" });
+
+        //Przechowujemy dane w sesji
+        req.session.user = {
+            id: user.id,
+            first_name: user.first_name,
+            last_name: user.last_name,
+            email: user.email,
+            password: user.password,
+            token: token
+        };
+
         res.status(200).json({ token });
     }
     catch (error) {

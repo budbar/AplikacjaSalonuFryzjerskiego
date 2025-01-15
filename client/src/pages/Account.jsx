@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import axios from "axios";
 
+axios.defaults.withCredentials = true;
+
 function Account() {
   const [isLogin, setIsLogin] = useState(true);
   const [firstName, setFirstName] = useState("");
@@ -18,7 +20,6 @@ function Account() {
     try {
       const response = await axios.post("http://localhost:8080/auth/register", {firstName, lastName, email, password});
       console.log("Pomyślnie zarejestrowano użytkownika: ", response.data);
-      window.location.reload();
     } catch (error) {
       console.error("Błąd rejestracji: ", error);
     }
