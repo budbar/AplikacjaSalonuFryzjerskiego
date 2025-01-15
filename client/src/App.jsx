@@ -1,6 +1,15 @@
 import axios from 'axios';
-import { useState, useEffect } from 'react'
+import { useState, useEffect } from 'react';
 
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import NavigationBar from './components/NavigationBar';
+import Footer from "./components/Footer";
+
+import Home from "./pages/Home";
+import About from "./pages/About";
+import Services from "./pages/Services";
+import Contact from "./pages/Contact";
+import Account from "./pages/Account";
 
 function App() {
   const [count, setCount] = useState(0);
@@ -16,9 +25,19 @@ function App() {
   }, []);
 
   return (
-    <div className="bg-blue-500 text-red text-center p-4">
-      <h1 className="text-4xl font-bold">Jeśli widzisz ten styl, Tailwind działa!</h1>
-    </div>
+    <>
+      <Router>
+        <NavigationBar />
+        <Routes>
+          <Route path="/" element={<Home />}/>
+          <Route path="/about" element={<About />} />
+          <Route path="/services" element={<Services />} />
+          <Route path="/contact" element={<Contact />} />
+          <Route path="/account" element={<Account />} />
+        </Routes>
+        <Footer />
+      </Router>
+    </>
   );
 }
 
