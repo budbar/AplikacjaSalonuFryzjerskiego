@@ -28,3 +28,31 @@ export const register = async (req, res) => {
         res.status(500).json({ message: "Błąd serwera." });
     }
 };
+
+export const login = async (req, res) => {
+    debugger;
+
+    const {email, password} = req.body;
+
+    try {
+        const userResult = await query("SELECT * FROM users WHERE email = $1", [email]);
+
+        if(userResult.rows.length ===0)
+            return res.status(400).json({ message: "Nieprawidłowy email lub hasło." });
+
+        const user = userResult.rows[0];
+
+        //Sprawdzamy poprawność hasła
+        const isPasswordMatch = await bcrypt.compare(password, user.password);
+
+        if(!isPasswordMatch)
+            return res.status(400).json({ message: "Nieprawidłowy email lub hasło." });
+
+        const token = jwt.sign({ id: user.id }, process.env.JWT_SECRET, { expiresIn: "1h" });
+        res.status(200).json({ token });
+    }
+    catch (error) {
+        console.log("Błąd serwera", error);
+        res.status(500).json({ message: "Błąd serwera." });
+    }
+};
