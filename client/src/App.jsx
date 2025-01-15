@@ -1,6 +1,3 @@
-import axios from 'axios';
-import { useState, useEffect } from 'react';
-
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import NavigationBar from './components/NavigationBar';
 import Footer from "./components/Footer";
@@ -11,23 +8,29 @@ import Services from "./pages/Services";
 import Contact from "./pages/Contact";
 import Login from "./pages/Login";
 import Register from "./pages/Register";
+import Account from './pages/Account';
+import Themes from './pages/Themes';
 
 function App() {
   return (
-    <>
+    <div className="bg-color min-h-screen flex flex-col">
       <Router>
         <NavigationBar />
-        <Routes>
-          <Route path="/" element={<Home />}/>
-          <Route path="/about" element={<About />} />
-          <Route path="/services" element={<Services />} />
-          <Route path="/contact" element={<Contact />} />
-          <Route path="/login" element={<Login />} />
-          <Route path="/register" element={<Register />} />
-        </Routes>
+        <div className="flex-grow">
+          <Routes>
+            <Route path="/home" element={<Home />}/>
+            <Route path="/about" element={<About />} />
+            <Route path="/services" element={<Services />} />
+            <Route path="/contact" element={<Contact />} />
+            <Route path="/login" element={<Login />} />
+            <Route path="/register" element={<Register />} />
+            <Route path="/account" element={<Account />} />
+            <Route path="/themes" element={<Themes />} />
+          </Routes>
+        </div>
         <Footer />
       </Router>
-    </>
+    </div>
   );
 }
 

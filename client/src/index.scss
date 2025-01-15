@@ -1,0 +1,31 @@
+@import "tailwindcss/base";
+@import "tailwindcss/components";
+@import "tailwindcss/utilities";
+
+$primary-color: #2d3748;
+$secondary-color: #ffff;
+$accent-color: #38a169;
+$background-color: #888eba;
+
+$primary-color-ligth: lighten($primary-color, 30%);
+
+
+.bg-primary {
+    background-color: $primary-color;
+}
+
+.bg-input {
+    background-color: $primary-color-ligth;
+}
+  
+.text-secondary {
+    color: $secondary-color;
+}
+
+.bg-accent {
+    background-color: $primary-color;
+}
+
+.bg-color {
+    background-color: $background-color;
+}

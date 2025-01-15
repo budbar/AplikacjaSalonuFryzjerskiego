@@ -19,45 +19,45 @@ function Register() {
     };
 
     return (
-        <div className="max-w-md mx-auto mt-10 p-6 bg-white rounded-lg shadow-2xl">
+        <div className="max-w-md mx-auto mt-10 p-6 rounded-lg shadow-2xl bg-primary text-secondary">
             <div>
-            <h2 className="text-2xl font-bold mb-4">Załóż swoje konto</h2>
+            <h2 className="text-2xl font-bold mb-4 text-center">Załóż swoje konto</h2>
             <form onSubmit={handleRegister}>
                 <div className="mb-4">
-                    <label className="block text-gray-700">Imię:</label>
+                    <label className="block font-bold">Imię:</label>
                     <input 
                         type="text" 
-                        className="w-full px-3 py-2 border border-gray-700 rounded" 
+                        className="w-full px-3 py-2 border-gray-700 bg-input rounded" 
                         value={firstName}
                         onChange={(e) => setFirstName(e.target.value)}  
                         required
                     />
                 </div>
                 <div className="mb-4">
-                    <label className="block text-gray-700">Nazwisko:</label>
+                    <label className="block font-bold">Nazwisko:</label>
                     <input 
                         type="text" 
-                        className="w-full px-3 py-2 border border-gray-700 rounded" 
+                        className="w-full px-3 py-2 border border-gray-700 bg-input rounded" 
                         value={lastName}
                         onChange={(e) => setLastName(e.target.value)}  
                         required
                     />
                 </div>
                 <div className="mb-4">
-                    <label className="block text-gray-700">Adres e-mail:</label>
+                    <label className="block font-bold">Adres e-mail:</label>
                     <input 
                         type="email" 
-                        className="w-full px-3 py-2 border border-gray-700 rounded" 
+                        className="w-full px-3 py-2 border border-gray-700 bg-input rounded" 
                         value={email}
                         onChange={(e) => setEmail(e.target.value)}  
                         required
                     />
                 </div>
                 <div className="mb-4">
-                    <label className="block text-gray-700">Hasło:</label>
+                    <label className="block font-bold">Hasło:</label>
                     <input 
                         type="password" 
-                        className="w-full px-3 py-2 border border-gray-700 rounded" 
+                        className="w-full px-3 py-2 border border-gray-700 bg-input rounded" 
                         value={password}
                         onChange={(e) => setPassword(e.target.value)}  
                         required
@@ -68,9 +68,9 @@ function Register() {
                         type="checkbox"
                         required
                     />
-                    <label className="text-gray-700 ml-2">Akceptuję regulamin</label>
+                    <label className="ml-2 font-bold">Akceptuję regulamin</label>
                 </div>
-                <button type="submit" className="w-full bg-gray-800 text-white py-2 rounded">Zarejestruj się</button>
+                <button type="submit" className="w-full bg-green-800 text-white py-2 rounded font-bold">Zarejestruj się</button>
             </form>
             </div>
         </div>

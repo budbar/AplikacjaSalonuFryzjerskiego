@@ -1,11 +1,11 @@
 import React from "react";
 
-function Account() {
+function Themes() {
   return (
     <div>
-      <h1>Konto</h1>
+      <h1>Motywy</h1>
     </div>
   );
 }
 
-export default Account;
+export default Themes;
