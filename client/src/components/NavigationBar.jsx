@@ -1,11 +1,10 @@
 import React, { useState, useEffect } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import axios from 'axios';
 
 const NavigationBar = () => {
   const [user, setUser] = useState(null);
   const [isOpen, setIsOpen] = useState(false);
-  const navigate = useNavigate();
 
   useEffect(() => {
     const fetchUser = async () => {
@@ -24,7 +23,7 @@ const NavigationBar = () => {
     try {
       await axios.post('http://localhost:8080/auth/logout', {}, { withCredentials: true });
       setUser(null);
-      navigate('/');
+      window.location.replace("/home");
     } catch (error) {
       console.error('Błąd wylogowania:', error);
     }
@@ -46,7 +45,8 @@ const NavigationBar = () => {
           </button>
         </div>
         <ul className={`lg:flex space-x-16 ${isOpen ? 'block' : 'hidden'} lg:block`}>
-          <li><Link to="/" className="hover:text-gray-300">Strona główna</Link></li>
+          <li><Link to="/home" className="hover:text-gray-300">Strona główna</Link></li>
+          <li><Link to="/store" className="hover:text-gray-300">Sklep</Link></li>
           <li><Link to="/about" className="hover:text-gray-300">O nas</Link></li>
           <li><Link to="/services" className="hover:text-gray-300">Usługi</Link></li>
           <li><Link to="/contact" className="hover:text-gray-300">Kontakt</Link></li>
@@ -61,7 +61,7 @@ const NavigationBar = () => {
                     <Link to="/account">Konto</Link>
                   </li>
                   <li className="px-4 py-2 cursor-pointer">
-                    <Link to="/themes">Motywy</Link>
+                    <Link to="/orders">Zamówienia</Link>
                   </li>
                   <li className="px-4 py-2 cursor-pointer" onClick={handleLogout}>Wyloguj się</li>
                 </ul>

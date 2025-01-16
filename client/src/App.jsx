@@ -9,7 +9,8 @@ import Contact from "./pages/Contact";
 import Login from "./pages/Login";
 import Register from "./pages/Register";
 import Account from './pages/Account';
-import Themes from './pages/Themes';
+import Store from './pages/Store';
+import Orders from './pages/Orders';
 
 function App() {
   return (
@@ -25,7 +26,8 @@ function App() {
             <Route path="/login" element={<Login />} />
             <Route path="/register" element={<Register />} />
             <Route path="/account" element={<Account />} />
-            <Route path="/themes" element={<Themes />} />
+            <Route path="/store" element={<Store />} />
+            <Route path="/orders" element={<Orders />} />
           </Routes>
         </div>
         <Footer />

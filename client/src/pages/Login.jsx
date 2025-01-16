@@ -46,7 +46,7 @@ function Login() {
                 required
               />
             </div>
-            <button type="submit" className="w-full bg-green-800 text-white py-2 rounded font-bold">Zaloguj się</button>
+            <button type="submit" className="w-full bg-accent text-white py-2 rounded font-bold">Zaloguj się</button>
             <div className="block mt-2 font-bold">
                 Nie posiadasz jeszcze konta? <Link to="/register" className="text-green-800">Zarejestruj się!</Link>
             </div>
