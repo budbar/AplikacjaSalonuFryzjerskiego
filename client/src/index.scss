@@ -7,8 +7,11 @@ $primary-color: #2d3748;
 $secondary-color: #ffff;
 $accent-color: #38a169;
 $background-color: #888eba;
-
 $primary-color-ligth: color.adjust($primary-color, $lightness: 30%);
+
+body, html {
+    overflow: hidden;
+}
 
 .bg-primary {
     background-color: $primary-color;
