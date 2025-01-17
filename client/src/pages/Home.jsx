@@ -1,7 +1,11 @@
-import React from "react";
+import React, { useState } from "react";
 
-const Home = () => {
-  return <div>Strona główna</div>;
-};
+function Home() {
+  return (
+    <>
+      Strona główna
+    </>
+  );
+}
 
 export default Home;

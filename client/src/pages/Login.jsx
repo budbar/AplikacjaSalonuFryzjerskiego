@@ -15,6 +15,7 @@ function Login() {
       const response = await axios.post("http://localhost:8080/auth/login", {email, password});    
       localStorage.setItem("token", response.data.token);
       window.location.replace("/home");
+      
     }
     catch(error) {
       console.log("Błąd logowanie: ", error);

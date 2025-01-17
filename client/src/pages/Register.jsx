@@ -1,17 +1,19 @@
 import React, { useState } from "react";
 import axios from "axios";
+import { AccountLevels } from "../../../server/enums/AccountLevelEnum.js";
 
 function Register() {
     const [firstName, setFirstName] = useState("");
     const [lastName, setLastName] = useState(""); 
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
+    const accountLevel = AccountLevels.User;
 
     const handleRegister = async (e) => {
         e.preventDefault();
 
         try {
-            const response = await axios.post("http://localhost:8080/auth/register", {firstName, lastName, email, password});
+            const response = await axios.post("http://localhost:8080/auth/register", {firstName, lastName, email, password, accountLevel});
             window.location.replace("/login");
         } catch (error) {
             console.error("Błąd rejestracji: ", error);

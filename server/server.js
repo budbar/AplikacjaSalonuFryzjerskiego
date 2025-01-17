@@ -3,7 +3,8 @@ import cors from "cors";
 import * as dotenv from "dotenv";
 import session from "express-session";
 import authRoutes from "./routes/authRoutes.js";
-import accountRoutes from "./routes/accountRoutes.js"
+import accountRoutes from "./routes/accountRoutes.js";
+import multimediaRoutes from "./routes/authRoutes.js";
 
 dotenv.config();
 
@@ -26,6 +27,7 @@ app.use(session({
 
 app.use("/auth", authRoutes);
 app.use("/account", accountRoutes);
+app.use("/multimedia", multimediaRoutes);
 
 app.get("/session", (req, res) => {
   res.json(req.session);

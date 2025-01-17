@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { Menu, MenuButton, MenuItem, MenuItems } from '@headlessui/react'
 import { Link } from 'react-router-dom';
 import axios from 'axios';
 
@@ -53,18 +54,70 @@ const NavigationBar = () => {
           <li className="relative group">
             {user ? (
               <>
-                <span className="hover:text-gray-300 cursor-pointer">
-                  {user.first_name} {user.last_name}
-                </span>
-                <ul className="absolute hidden group-hover:block bg-primary  mt-2 rounded shadow-lg">
-                  <li className="px-4 py-2 cursor-pointer">
-                    <Link to="/account">Konto</Link>
-                  </li>
-                  <li className="px-4 py-2 cursor-pointer">
-                    <Link to="/orders">Zamówienia</Link>
-                  </li>
-                  <li className="px-4 py-2 cursor-pointer" onClick={handleLogout}>Wyloguj się</li>
-                </ul>
+                <Menu as="div" className="relative inline-block text-left">
+                  <div>
+                    <MenuButton>
+                      {user.first_name} {user.last_name}
+                    </MenuButton>
+                  </div>
+
+                  <MenuItems
+                    transition
+                    className="absolute right-0 z-10 mt-2 w-56 origin-top-right rounded-md bg-primary shadow-lg ring-1 ring-black/5 transition focus:outline-none data-[closed]:scale-95 data-[closed]:transform data-[closed]:opacity-0 data-[enter]:duration-100 data-[leave]:duration-75 data-[enter]:ease-out data-[leave]:ease-in"
+                  >
+                    <div className="py-1">
+                      <MenuItem>
+                        <Link
+                          to="/account"
+                          className="block px-4 py-2 text-sm text-secondary hover:text-gray-300"
+                        >
+                          Konto
+                        </Link>
+                      </MenuItem>
+                      <MenuItem>
+                        <Link
+                          to="/orders"
+                          className="block px-4 py-2 text-sm text-secondary hover:text-gray-300"
+                        >
+                          Zamówienia
+                        </Link>
+                      </MenuItem>
+
+                      { user.level == 1 ? (
+                        <>
+                          <MenuItem>
+                            <Link
+                              to="/multimedia"
+                              className="block px-4 py-2 text-sm text-secondary hover:text-gray-300"
+                            >
+                              Multimedia
+                            </Link>
+                          </MenuItem>
+                          <MenuItem>
+                            <Link
+                              to="/slider-settings"
+                              className="block px-4 py-2 text-sm text-secondary hover:text-gray-300"
+                            >
+                              Ustawienia slidera
+                            </Link>
+                          </MenuItem>
+                        </>
+                      ) : (
+                        <></>
+                      )}
+
+                      <MenuItem>
+                        <button
+                          type="submit"
+                          className="block w-full px-4 py-2 text-left text-sm text-secondary hover:text-gray-300"
+                          onClick={handleLogout}
+                        >
+                          Wyloguj się
+                        </button>
+                      </MenuItem>
+                    </div>
+                  </MenuItems>
+                </Menu>
               </>
             ) : (
               <Link to="/login" className="hover:text-gray-300">
