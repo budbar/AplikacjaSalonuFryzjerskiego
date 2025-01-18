@@ -23,15 +23,16 @@ function Home() {
     fetchImages();
   }, []);
 
+  if(!images)
+    return (
+      <div>
+        Ładowanie...
+      </div>
+    );
+
   return (
     <>
-      {
-        images.length > 0 ? (
-          <ImageSlider images={images} numberOfSlides={images.length}/>
-        ) : (
-          <div>Brak zdjęć wybranych do slidera</div>
-        )
-      }
+        <ImageSlider images={images} numberOfSlides={images.length}/>
     </>
   );
 }

@@ -12,7 +12,8 @@ import Account from './pages/Account';
 import Store from './pages/Store';
 import Orders from './pages/Orders';
 import Multimedia from './pages/Multimedia';
-import SliderSettings from "./pages/SliderSettings"
+import SliderSettings from "./pages/SliderSettings";
+import Cart from './pages/Cart';
 
 function App() {
   return (
@@ -32,6 +33,7 @@ function App() {
             <Route path="/orders" element={<Orders />} />
             <Route path="/multimedia" element={<Multimedia/>} />
             <Route path="/slider-settings" element={<SliderSettings/>} />
+            <Route path="/cart" element={<Cart/>} />
           </Routes>
         </div>
         <Footer />
