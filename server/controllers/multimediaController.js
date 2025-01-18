@@ -1,16 +1,21 @@
 import { query } from "../database.js";
 import fs from "fs";
+import sharp from "sharp";
 
 export const addImage = async (req, res) => {
   const { name, altText } = req.body;
   const path = req.file.path;
 
   try {
-    const imageData = fs.readFileSync(path);
+    const image = await sharp(path).resize(800, 600).toBuffer();
+
     const result = await query(
       "INSERT INTO images (name, alt_text, image_data) VALUES ($1, $2, $3) RETURNING *",
-      [name, altText, imageData]
+      [name, altText, image]
     );
+
+    fs.unlinkSync(path);
+
     res.status(201).json(result.rows[0]);
   } catch (error) {
     console.error("Błąd przy dodawaniu zdjęcia do bazy: ", error);

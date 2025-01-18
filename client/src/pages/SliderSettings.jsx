@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import { SliderSettingsEnum } from "../../../server/enums/SliderSettingsEnum.js"
+import { SliderSelectionEnum } from "../../../server/enums/SliderSelectionEnum.js"
 
 const SliderSettings = () => {
   const [images, setImages] = useState([]);
@@ -18,8 +18,8 @@ const SliderSettings = () => {
         });
 
         setImages(imagesData);
-        setAvailableImages(imagesData.filter(image => image.slider_selection == SliderSettingsEnum.NotSelectedForSlider));
-        setSelectedImages(imagesData.filter(image => image.slider_selection == SliderSettingsEnum.SelectedForSlider));
+        setAvailableImages(imagesData.filter(image => image.slider_selection == SliderSelectionEnum.NotSelectedForSlider));
+        setSelectedImages(imagesData.filter(image => image.slider_selection == SliderSelectionEnum.SelectedForSlider));
       } catch (error) {
         console.error("Błąd pobierania zdjęć: ", error);
       }
@@ -38,8 +38,8 @@ const SliderSettings = () => {
       });
 
       setImages(updatedImages);
-      setAvailableImages(updatedImages.filter(image => image.slider_selection == SliderSettingsEnum.NotSelectedForSlider));
-      setSelectedImages(updatedImages.filter(image => image.slider_selection == SliderSettingsEnum.SelectedForSlider));
+      setAvailableImages(updatedImages.filter(image => image.slider_selection == SliderSelectionEnum.NotSelectedForSlider));
+      setSelectedImages(updatedImages.filter(image => image.slider_selection == SliderSelectionEnum.SelectedForSlider));
 
       await axios.put(`http://localhost:8080/slider-settings/edit-slider/${id}`, {
         sliderSetting: action,
@@ -59,7 +59,7 @@ const SliderSettings = () => {
               <img src={image.url} alt={image.alt_text} className="w-full h-auto mb-4" />
               <button
                 className="w-full bg-red-500 hover-bg-red-700 text-secondary py-2 rounded font-bold mb-2"
-                onClick={() => handleSliderEdit(image.id, SliderSettingsEnum.NotSelectedForSlider)}
+                onClick={() => handleSliderEdit(image.id, SliderSelectionEnum.NotSelectedForSlider)}
               >
                 Usuń ze slidera
               </button>
@@ -75,7 +75,7 @@ const SliderSettings = () => {
               <img src={image.url} alt={image.alt_text} className="w-full h-auto mb-4" />
               <button
                 className="w-full bg-accent hover-bg-accent text-secondary py-2 rounded font-bold mb-2"
-                onClick={() => handleSliderEdit(image.id, SliderSettingsEnum.SelectedForSlider)}
+                onClick={() => handleSliderEdit(image.id, SliderSelectionEnum.SelectedForSlider)}
               >
                 Dodaj do slidera
               </button>
