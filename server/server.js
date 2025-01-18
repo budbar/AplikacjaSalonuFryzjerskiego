@@ -4,7 +4,8 @@ import * as dotenv from "dotenv";
 import session from "express-session";
 import authRoutes from "./routes/authRoutes.js";
 import accountRoutes from "./routes/accountRoutes.js";
-import multimediaRoutes from "./routes/authRoutes.js";
+import multimediaRoutes from "./routes/multimediaRoutes.js";
+import sliderRoutes from "./routes/sliderRoutes.js";
 
 dotenv.config();
 
@@ -28,6 +29,7 @@ app.use(session({
 app.use("/auth", authRoutes);
 app.use("/account", accountRoutes);
 app.use("/multimedia", multimediaRoutes);
+app.use("/slider-settings", sliderRoutes);
 
 app.get("/session", (req, res) => {
   res.json(req.session);

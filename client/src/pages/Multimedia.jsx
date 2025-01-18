@@ -2,42 +2,28 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 
 const Multimedia = () => {
-    const [images, setImages] = useState([
-        {
-          id: 1,
-          name: "Przykładowe zdjęcie 1",
-          alt_text: "Opis zdjęcia 1",
-          file_path: "uploads/example1.jpg",
-        },
-        {
-          id: 2,
-          name: "Przykładowe zdjęcie 2",
-          alt_text: "Opis zdjęcia 2",
-          file_path: "uploads/example2.jpg",
-        },
-        {
-          id: 3,
-          name: "Przykładowe zdjęcie 3",
-          alt_text: "Opis zdjęcia 3",
-          file_path: "uploads/example3.jpg",
-        },
-      ]);
+  const [images, setImages] = useState([]);
   const [file, setFile] = useState(null);
   const [name, setName] = useState("");
   const [altText, setAltText] = useState("");
 
-//   useEffect(() => {
-//     const fetchImages = async () => {
-//       try {
-//         const response = await axios.get("http://localhost:8080/multimedia/images");
-//         setImages(response.data);
-//       } catch (error) {
-//         console.error("Błąd pobierania zdjęć: ", error);
-//       }
-//     };
+  useEffect(() => {
+    const fetchImages = async () => {
+      try {
+        const response = await axios.get("http://localhost:8080/multimedia/get-images");
+        const imagesData = response.data.map((image) => {
+          const blob = new Blob([new Uint8Array(image.image_data.data)], { type: 'image/jpeg' });
+          const url = URL.createObjectURL(blob);
+          return { ...image, url };
+        });
+        setImages(imagesData);
+      } catch (error) {
+        console.error("Błąd pobierania zdjęć: ", error);
+      }
+    };
 
-//     fetchImages();
-//   }, []);
+    fetchImages();
+  }, []);
 
   const handleFileChange = (e) => {
     setFile(e.target.files[0]);
@@ -51,17 +37,41 @@ const Multimedia = () => {
     formData.append("altText", altText);
 
     try {
-        const response = await axios.post("http://localhost:8080/multimedia/add-image", formData, {
-            headers: {
-              "Content-Type": "multipart/form-data",
-            },
-        });
-        setImages([...images, response.data]);
-        setFile(null);
-        setName("");
-        setAltText("");
+      const response = await axios.post("http://localhost:8080/multimedia/add-image", formData, {
+        headers: {
+          "Content-Type": "multipart/form-data",
+        },
+      });
+      const blob = new Blob([new Uint8Array(response.data.image_data.data)], { type: 'image/jpeg' });
+      const url = URL.createObjectURL(blob);
+      setImages([...images, { ...response.data, url }]);
+      setFile(null);
+      setName("");
+      setAltText("");
     } catch (error) {
-        console.error("Błąd dodawania zdjęcia: ", error);
+      console.error("Błąd dodawania zdjęcia: ", error);
+    }
+  };
+
+  const handleUpdate = async (id, updatedName, updatedAltText) => {
+    try {
+      const response = await axios.put(`http://localhost:8080/multimedia/update-image/${id}`, {
+        name: updatedName,
+        altText: updatedAltText,
+      });
+      setImages(images.map((image) => (image.id === id ? { ...response.data, url: image.url } : image)));
+      window.location.reload(); //Tymczasowe rozwiązanie trzeba będzie naprawić ten bug w konsoli przy edycji zdjęcia
+    } catch (error) {
+      console.error("Błąd aktualizacji zdjęcia: ", error);
+    }
+  };
+
+  const handleDelete = async (id) => {
+    try {
+      await axios.delete(`http://localhost:8080/multimedia/delete-image/${id}`);
+      setImages(images.filter((image) => image.id !== id));
+    } catch (error) {
+      console.error("Błąd usuwania zdjęcia: ", error);
     }
   };
 
@@ -101,14 +111,14 @@ const Multimedia = () => {
             required
           />
         </div>
-        <button type="submit" className="w-full bg-accent hover-bg-accent text-white py-2 rounded font-bold">Dodaj zdjęcie</button>
+        <button type="submit" className="w-full bg-accent hover-bg-accent text-secondary py-2 rounded font-bold">Dodaj zdjęcie</button>
       </form>
 
       <h2 className="text-xl font-bold mt-10 mb-4">Dodane zdjęcia</h2>
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
         {images.map((image) => (
           <div key={image.id} className="bg-white p-4 rounded shadow-md">
-            <img src={`http://localhost:8080/${image.file_path}`} alt={image.alt_text} className="w-full h-auto mb-4" />
+            <img src={image.url} alt={image.alt_text} className="w-full h-auto mb-4" />
             <input
               type="text"
               className="w-full px-3 py-2 border-gray-700 bg-input rounded mb-2"
@@ -122,12 +132,14 @@ const Multimedia = () => {
               onChange={(e) => setImages(images.map((img) => (img.id === image.id ? { ...img, alt_text: e.target.value } : img)))}
             />
             <button
-              className="w-full bg-accent hover-bg-accent text-white py-2 rounded font-bold mb-2"
+              className="w-full bg-accent hover-bg-accent text-secondary py-2 rounded font-bold mb-2"
+              onClick={() => handleUpdate(image.id, image.name, image.alt_text)}
             >
               Zaktualizuj
             </button>
             <button
-              className="w-full bg-red-500 hover-bg-red-700 text-white py-2 rounded font-bold"
+              className="w-full bg-red-500 hover-bg-red-700 text-secondary py-2 rounded font-bold"
+              onClick={() => handleDelete(image.id)}
             >
               Usuń
             </button>
