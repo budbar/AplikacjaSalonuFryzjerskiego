@@ -95,6 +95,14 @@ const NavigationBar = () => {
                         <>
                           <MenuItem>
                             <Link
+                              to="/product-management"
+                              className="block px-4 py-2 text-sm text-secondary hover:text-gray-300"
+                            >
+                              Zarządzanie produktami
+                            </Link>
+                          </MenuItem>
+                          <MenuItem>
+                            <Link
                               to="/multimedia"
                               className="block px-4 py-2 text-sm text-secondary hover:text-gray-300"
                             >

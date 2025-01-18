@@ -14,6 +14,7 @@ import Orders from './pages/Orders';
 import Multimedia from './pages/Multimedia';
 import SliderSettings from "./pages/SliderSettings";
 import Cart from './pages/Cart';
+import ProductManagement from './pages/ProductManagement';
 
 function App() {
   return (
@@ -34,6 +35,7 @@ function App() {
             <Route path="/multimedia" element={<Multimedia/>} />
             <Route path="/slider-settings" element={<SliderSettings/>} />
             <Route path="/cart" element={<Cart/>} />
+            <Route path="/product-management" element={<ProductManagement/>} />
           </Routes>
         </div>
         <Footer />
