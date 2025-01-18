@@ -15,31 +15,36 @@ import Multimedia from './pages/Multimedia';
 import SliderSettings from "./pages/SliderSettings";
 import Cart from './pages/Cart';
 import ProductManagement from './pages/ProductManagement';
+import { CartProvider } from './context/CartContext';
 
 function App() {
   return (
     <div className="bg-color min-h-screen flex flex-col">
-      <Router>
-        <NavigationBar />
-        <div className="flex-grow">
-          <Routes>
-            <Route path="/home" element={<Home />}/>
-            <Route path="/about" element={<About />} />
-            <Route path="/services" element={<Services />} />
-            <Route path="/contact" element={<Contact />} />
-            <Route path="/login" element={<Login />} />
-            <Route path="/register" element={<Register />} />
-            <Route path="/account" element={<Account />} />
-            <Route path="/store" element={<Store />} />
-            <Route path="/orders" element={<Orders />} />
-            <Route path="/multimedia" element={<Multimedia/>} />
-            <Route path="/slider-settings" element={<SliderSettings/>} />
-            <Route path="/cart" element={<Cart/>} />
-            <Route path="/product-management" element={<ProductManagement/>} />
-          </Routes>
-        </div>
-        <Footer />
-      </Router>
+      <CartProvider>
+        <Router>
+          <NavigationBar />
+          <div className="flex-grow">
+            <Routes>
+              <Route path="/home" element={<Home />}/>
+              <Route path="/about" element={<About />} />
+              <Route path="/services" element={<Services />} />
+              <Route path="/contact" element={<Contact />} />
+              <Route path="/login" element={<Login />} />
+              <Route path="/register" element={<Register />} />
+              <Route path="/account" element={<Account />} />
+              <Route path="/orders" element={<Orders />} />
+              <Route path="/multimedia" element={<Multimedia/>} />
+              <Route path="/slider-settings" element={<SliderSettings/>} />
+              <Route path="/product-management" element={<ProductManagement/>} />
+
+              <Route path="/store" element={<Store />} />
+              <Route path="/cart" element={<Cart/>} />
+
+            </Routes>
+          </div>
+          <Footer />
+        </Router>
+      </CartProvider>
     </div>
   );
 }

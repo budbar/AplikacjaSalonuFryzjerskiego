@@ -33,6 +33,69 @@ app.use("/multimedia", multimediaRoutes);
 app.use("/slider-settings", sliderRoutes);
 app.use("/products-management", productManagementRoutes);
 
+let cart = [];
+
+//Dodaj produkt do koszyka
+app.post("/cart/add-to-cart", (req, res) => {
+  const product = req.body;
+  const existingProduct = cart.find(item => item.id === product.id);
+
+  if (existingProduct) {
+    existingProduct.quantity += 1;
+    existingProduct.totalPrice = existingProduct.quantity * existingProduct.price;
+  } else {
+    product.quantity = 1;
+    product.totalPrice = product.price;
+    cart.push(product);
+  }
+
+  res.status(201).json(cart);
+});
+
+//Pobierz produkty z koszyka
+app.get("/cart/get-cart-products", (req, res) => {
+  res.json(cart);
+});
+
+//Usuń produkt z koszyka
+app.delete("/cart/remove-product-from-cart/:id", (req, res) => {
+  const productId = Number(req.params.id);
+  cart = cart.filter((product) => product.id !== productId);
+  res.json(cart);
+});
+
+//Wyczyść produkty z koszyka
+app.delete("/cart/remove-all-from-cart", (req, res) => {
+  cart = [];
+  res.json(cart);
+});
+
+// Zwiększ ilość produktu w koszyku
+app.post("/cart/increment-quantity/:id", (req, res) => {
+  const productId = Number(req.params.id);
+  const product = cart.find(item => item.id === productId);
+
+  if (product) {
+    product.quantity += 1;
+    product.totalPrice = product.quantity * product.price;
+  }
+
+  res.json(cart);
+});
+
+// Zmniejsz ilość produktu w koszyku
+app.post("/cart/decrement-quantity/:id", (req, res) => {
+  const productId = Number(req.params.id);
+  const product = cart.find(item => item.id === productId);
+
+  if (product && product.quantity > 1) {
+    product.quantity -= 1;
+    product.totalPrice = product.quantity * product.price;
+  }
+
+  res.json(cart);
+});
+
 app.get("/session", (req, res) => {
   res.json(req.session);
 });
