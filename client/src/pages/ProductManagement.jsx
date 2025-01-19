@@ -86,14 +86,14 @@ const ProductManagement = () => {
 
   return (
     <div className="max-w-4xl mx-auto mt-10 p-6 bg-primary rounded-lg shadow-md text-secondary">
-      <h1 className="text-2xl font-bold mb-4">Dodaj produkty do bazy danych</h1>
+      <h1 className="text-2xl font-bold mb-4 border-b border-gray-200 pb-2">Dodaj produkty do bazy danych</h1>
       <form onSubmit={handleSubmit}>
         <div className="mb-4">
           <label className="block font-bold">Wybierz zdjęcie:</label>
           <input
             type="file"
             name="file"
-            className="w-full px-3 py-2 border-gray-700 bg-input rounded"
+            className="w-full px-3 py-2 border border-gray-300 bg-input rounded-lg"
             onChange={handleFileChange}
             required
           />
@@ -103,7 +103,7 @@ const ProductManagement = () => {
           <input
             type="text"
             name="name"
-            className="w-full px-3 py-2 border-gray-700 bg-input rounded"
+            className="w-full px-3 py-2 border border-gray-300 bg-input rounded-lg"
             value={name}
             onChange={(e) => setName(e.target.value)}
             required
@@ -114,7 +114,7 @@ const ProductManagement = () => {
           <input
             type="text"
             name="description"
-            className="w-full px-3 py-2 border-gray-700 bg-input rounded"
+            className="w-full px-3 py-2 border border-gray-300 bg-input rounded-lg"
             value={description}
             onChange={(e) => setDescription(e.target.value)}
             required
@@ -125,7 +125,7 @@ const ProductManagement = () => {
           <input
             type="number"
             name="price"
-            className="w-full px-3 py-2 border-gray-700 bg-input rounded"
+            className="w-full px-3 py-2 border border-gray-300 bg-input rounded-lg"
             value={price}
             onChange={(e) => setPrice(e.target.value)}
             required
@@ -136,7 +136,7 @@ const ProductManagement = () => {
             <input
                 type="text"
                 name="altText"
-                className="w-full px-3 py-2 border-gray-700 bg-input rounded"
+                className="w-full px-3 py-2 border border-gray-300 bg-input rounded-lg"
                 value={altText}
                 onChange={(e) => setAltText(e.target.value)}
                 required
@@ -145,32 +145,32 @@ const ProductManagement = () => {
         <button type="submit" className="w-full bg-button hover-bg-button text-secondary py-2 rounded font-bold">Dodaj produkt</button>
       </form>
 
-      <h2 className="text-xl font-bold mt-10 mb-4">Dodane produkty</h2>
+      <h2 className="text-xl font-bold mt-10 mb-4 border-b border-gray-200 pb-2">Dodane produkty</h2>
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
         {products.map((product) => (
-          <div key={product.id} className="bg-white p-4 rounded shadow-md">
+          <div key={product.id} className="bg-color p-4 rounded shadow-md rounded-lg">
             <img src={product.url} alt={product.alt_text} className="w-full h-auto mb-4" />
             <input
               type="text"
-              className="w-full px-3 py-2 border-gray-700 bg-input rounded mb-2"
+              className="w-full px-3 py-2 border border-gray-300 bg-input rounded-lg mb-2"
               value={product.name}
               onChange={(e) => setProducts(products.map((prdct) => (prdct.id === product.id ? { ...prdct, name: e.target.value } : prdct)))}
             />
             <input
               type="text"
-              className="w-full px-3 py-2 border-gray-700 bg-input rounded mb-2"
+              className="w-full px-3 py-2 border border-gray-300 bg-input rounded-lg mb-2"
               value={product.description}
               onChange={(e) => setProducts(products.map((prdct) => (prdct.id === product.id ? { ...prdct, description: e.target.value } : prdct)))}
             />
             <input
               type="text"
-              className="w-full px-3 py-2 border-gray-700 bg-input rounded mb-2"
+              className="w-full px-3 py-2 border border-gray-300 bg-input rounded-lg mb-2"
               value={product.price}
               onChange={(e) => setProducts(products.map((prdct) => (prdct.id === product.id ? { ...prdct, price: e.target.value } : prdct)))}
             />
             <input
               type="text"
-              className="w-full px-3 py-2 border-gray-700 bg-input rounded mb-2"
+              className="w-full px-3 py-2 border border-gray-300 bg-input rounded-lg mb-2"
               value={product.alt_text}
               onChange={(e) => setProducts(products.map((prdct) => (prdct.id === product.id ? { ...prdct, alt_text: e.target.value } : prdct)))}
             />

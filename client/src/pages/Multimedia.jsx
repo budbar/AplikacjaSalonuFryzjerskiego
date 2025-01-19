@@ -84,7 +84,7 @@ const Multimedia = () => {
           <input
             type="file"
             name="file"
-            className="w-full px-3 py-2 border border-gray-200 bg-input rounded"
+            className="w-full px-3 py-2 border border-gray-200 bg-input rounded-lg"
             onChange={handleFileChange}
             required
           />
