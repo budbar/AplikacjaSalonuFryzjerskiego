@@ -142,7 +142,7 @@ const ProductManagement = () => {
                 required
             />
         </div>
-        <button type="submit" className="w-full bg-accent hover-bg-accent text-secondary py-2 rounded font-bold">Dodaj produkt</button>
+        <button type="submit" className="w-full bg-button hover-bg-button text-secondary py-2 rounded font-bold">Dodaj produkt</button>
       </form>
 
       <h2 className="text-xl font-bold mt-10 mb-4">Dodane produkty</h2>
@@ -175,7 +175,7 @@ const ProductManagement = () => {
               onChange={(e) => setProducts(products.map((prdct) => (prdct.id === product.id ? { ...prdct, alt_text: e.target.value } : prdct)))}
             />
             <button
-              className="w-full bg-accent hover-bg-accent text-secondary py-2 rounded font-bold mb-2"
+              className="w-full bg-button hover-bg-button text-secondary py-2 rounded font-bold mb-2"
               onClick={() => handleUpdate(product.id, product.name, product.description, product.price, product.alt_text)}
             >
               Zaktualizuj

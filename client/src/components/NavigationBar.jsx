@@ -1,11 +1,13 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import { Menu, MenuButton, MenuItem, MenuItems } from '@headlessui/react'
 import { Link } from 'react-router-dom';
 import axios from 'axios';
+import { CartContext } from '../context/CartContext';
 
 const NavigationBar = () => {
   const [user, setUser] = useState(null);
   const [isOpen, setIsOpen] = useState(false);
+  const {cart, clearCart} = useContext(CartContext);
 
   useEffect(() => {
     const fetchUser = async () => {
@@ -22,6 +24,7 @@ const NavigationBar = () => {
 
   const handleLogout = async () => {
     try {
+      await clearCart();
       await axios.post('http://localhost:8080/auth/logout', {}, { withCredentials: true });
       setUser(null);
       window.location.replace("/home");

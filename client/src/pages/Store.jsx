@@ -35,7 +35,7 @@ function Store() {
             <p className="text-gray-700 mb-2">{product.description}</p>
             <p className="text-gray-900 font-bold mb-4">{product.price} zł</p>
             <button
-              className="w-full bg-accent hover:bg-accent-dark text-white py-2 rounded font-bold transition-colors duration-300"
+              className="w-full bg-button hover:bg-button-dark text-white py-2 rounded font-bold transition-colors duration-300"
               onClick={() => addToCart({
                 id: product.id,
                 name: product.name,

@@ -16,6 +16,7 @@ import SliderSettings from "./pages/SliderSettings";
 import Cart from './pages/Cart';
 import ProductManagement from './pages/ProductManagement';
 import { CartProvider } from './context/CartContext';
+import Checkout from "./pages/Checkout";
 
 function App() {
   return (
@@ -36,7 +37,7 @@ function App() {
               <Route path="/multimedia" element={<Multimedia/>} />
               <Route path="/slider-settings" element={<SliderSettings/>} />
               <Route path="/product-management" element={<ProductManagement/>} />
-
+              <Route path="/checkout" element={<Checkout/>} />
               <Route path="/store" element={<Store />} />
               <Route path="/cart" element={<Cart/>} />
 

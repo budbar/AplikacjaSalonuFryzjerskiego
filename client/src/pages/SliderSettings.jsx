@@ -74,7 +74,7 @@ const SliderSettings = () => {
             <div key={image.id} className="bg-white p-4 rounded shadow-md">
               <img src={image.url} alt={image.alt_text} className="w-full h-auto mb-4" />
               <button
-                className="w-full bg-accent hover-bg-accent text-secondary py-2 rounded font-bold mb-2"
+                className="w-full bg-button hover-bg-button text-secondary py-2 rounded font-bold mb-2"
                 onClick={() => handleSliderEdit(image.id, SliderSelectionEnum.SelectedForSlider)}
               >
                 Dodaj do slidera

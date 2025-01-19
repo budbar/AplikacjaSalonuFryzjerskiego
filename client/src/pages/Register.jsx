@@ -72,7 +72,7 @@ function Register() {
                     />
                     <label className="ml-2 font-bold">Akceptuję regulamin</label>
                 </div>
-                <button type="submit" className="w-full bg-accent text-white py-2 rounded font-bold">Zarejestruj się</button>
+                <button type="submit" className="w-full bg-button text-white py-2 rounded font-bold">Zarejestruj się</button>
             </form>
             </div>
         </div>

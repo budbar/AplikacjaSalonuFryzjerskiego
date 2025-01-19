@@ -111,7 +111,7 @@ const Multimedia = () => {
             required
           />
         </div>
-        <button type="submit" className="w-full bg-accent hover-bg-accent text-secondary py-2 rounded font-bold">Dodaj zdjęcie</button>
+        <button type="submit" className="w-full bg-button hover-bg-button text-secondary py-2 rounded font-bold">Dodaj zdjęcie</button>
       </form>
 
       <h2 className="text-xl font-bold mt-10 mb-4">Dodane zdjęcia</h2>
@@ -132,7 +132,7 @@ const Multimedia = () => {
               onChange={(e) => setImages(images.map((img) => (img.id === image.id ? { ...img, alt_text: e.target.value } : img)))}
             />
             <button
-              className="w-full bg-accent hover-bg-accent text-secondary py-2 rounded font-bold mb-2"
+              className="w-full bg-button hover-bg-button text-secondary py-2 rounded font-bold mb-2"
               onClick={() => handleUpdate(image.id, image.name, image.alt_text)}
             >
               Zaktualizuj

@@ -5,9 +5,10 @@
 
 $primary-color: #2d3748;
 $secondary-color: #ffff;
-$accent-color: #38a169;
+$button-color: #38a169;
 $background-color: #888eba;
 $primary-color-ligth: color.adjust($primary-color, $lightness: 30%);
+$error-color: #e60909;
 
 .bg-primary {
     background-color: $primary-color;
@@ -21,10 +22,14 @@ $primary-color-ligth: color.adjust($primary-color, $lightness: 30%);
     color: $secondary-color;
 }
 
-.bg-accent {
-    background-color: $accent-color;
+.bg-button {
+    background-color: $button-color;
 }
 
 .bg-color {
     background-color: $background-color;
+}
+
+.error-color {
+    color: $error-color;
 }

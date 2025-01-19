@@ -19,7 +19,7 @@ export const getAddressData = async (req, res) => {
 
     try {
         const userAddressDataResults = await query(
-            "SELECT residence, town, zip_code, country, phone_number FROM users WHERE email = $1", 
+            "SELECT first_name, last_name, residence, town, zip_code, country, phone_number FROM users WHERE email = $1", 
             [email]
         );
 

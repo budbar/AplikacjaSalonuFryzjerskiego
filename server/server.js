@@ -7,6 +7,7 @@ import accountRoutes from "./routes/accountRoutes.js";
 import multimediaRoutes from "./routes/multimediaRoutes.js";
 import sliderRoutes from "./routes/sliderRoutes.js";
 import productManagementRoutes from "./routes/productManagementRoutes.js";
+import checkoutRoutes from "./routes/checkoutRoutes.js";
 
 dotenv.config();
 
@@ -32,6 +33,7 @@ app.use("/account", accountRoutes);
 app.use("/multimedia", multimediaRoutes);
 app.use("/slider-settings", sliderRoutes);
 app.use("/products-management", productManagementRoutes);
+app.use("/checkout", checkoutRoutes);
 
 let cart = [];
 

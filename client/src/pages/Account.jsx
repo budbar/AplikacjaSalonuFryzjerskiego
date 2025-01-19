@@ -152,7 +152,7 @@ function Account() {
                 required
               />
             </div>
-            <button type="submit" className="w-full bg-accent hover-bg-accent text-white py-2 rounded font-bold">Zaktualizuj dane adresowe</button>
+            <button type="submit" className="w-full bg-button hover-bg-button text-white py-2 rounded font-bold">Zaktualizuj dane adresowe</button>
           </form>
         </div>
       </div>
