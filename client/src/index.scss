@@ -6,6 +6,7 @@
 $primary-color: #2d3748;
 $secondary-color: #ffff;
 $button-color: #38a169;
+$button-color-warning: #e09304;
 $button-color-cancel: #e60909;
 $background-color: #888eba;
 $primary-color-ligth: color.adjust($primary-color, $lightness: 30%);
@@ -25,6 +26,10 @@ $error-color: #e60909;
 
 .bg-button {
     background-color: $button-color;
+}
+
+.bg-button-warning {
+    background-color: $button-color-warning;
 }
 
 .bg-button-cancel {

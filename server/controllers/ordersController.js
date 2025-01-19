@@ -24,3 +24,13 @@ export const editOrderStatus = async (req, res) => {
         res.status(500).json({ message: "Błąd przy aktualizacji stanu zamówienia." });
     }
 }
+
+export const getAllOrders = async (req, res) => {
+    try {
+        const result = await query("SELECT * FROM orders");
+        res.status(200).json(result.rows);
+    } catch (error) {
+        console.error("Błąd przy pobieraniu zamówień: ", error);
+        res.status(500).json({ message: "Błąd przy pobieraniu zamówień." });
+    }
+}

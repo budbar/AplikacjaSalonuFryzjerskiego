@@ -102,12 +102,12 @@ const Checkout = () => {
     );
 
     return (
-        <section className="bg- py-8 antialiased dark:bg-gray-900 md:py-16">
+        <section className="py-8 antialiased dark:bg-gray-900 md:py-16">
             <form onSubmit={handleSubmit} className="mx-auto max-w-screen-xl bg-primary rounded-lg px-4 py-4 ">
                 <div className="mt-6 sm:mt-8 lg:flex lg:items-start lg:gap-12 xl:gap-16">
                     <div className="min-w-0 flex-1 space-y-8">
                         <div className="space-y-4">
-                            <h2 className="text-xl font-semibold text-secondary dark:text-white sm:text-2xl">Podsumowanie zamówienia</h2>
+                            <h2 className="text-xl font-semibold text-secondary dark:text-white sm:text-2xl border-b border-gray-200 pb-2">Podsumowanie zamówienia</h2>
                             <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
                                 <div>
                                     <label htmlFor="first_name" className="mb-2 block text-sm font-medium text-secondary dark:text-white"> Imię: </label>
@@ -319,7 +319,7 @@ const Checkout = () => {
                     </div>
 
                     <div className="mt-6 w-full space-y-6 sm:mt-8 lg:mt-0 lg:max-w-xs xl:max-w-md bg-input text-secondary rounded-lg p-4 border border-gray-200">
-                        <p className="text-xl font-semibold">Podsumowanie płatności</p>
+                        <p className="text-xl font-semibold border-b border-gray-200 pb-2">Podsumowanie płatności</p>
                         <div className="flow-root">
                             <div className="-my-3 divide-y divide-gray-200 dark:divide-gray-800">
                                 <dl className="flex items-center justify-between gap-4 py-3">
