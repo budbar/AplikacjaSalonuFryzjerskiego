@@ -1,5 +1,5 @@
-export const AccountLevels = Object.freeze({
+export const OrderStatusEnum = Object.freeze({
     Realized: 1,
-    InProgess: 2,
+    InProgress: 2,
     Canceled: 3
 });
