@@ -1,17 +1,21 @@
 import React, { useState, useContext, useEffect } from "react";
 import { CartContext } from "../context/CartContext";
+import { PaymentMethodsEnum } from "../../../server/enums/PaymentMethodsEnum";
+import { PostageMethodsEnum } from "../../../server/enums/PostageMethodsEnum";
 import axios from "axios";
 
 const Checkout = () => {
-    const { cart } = useContext(CartContext);
+    const { cart, clearCart } = useContext(CartContext);
     const [user, setUser] = useState(null);
     const [phoneNumber, setPhoneNumber] = useState("");
     const [residence, setResidence] = useState("");
     const [town, setTown] = useState("");
     const [zipCode, setZipCode] = useState("");
     const [country, setCountry] = useState("");
-    const [methodOfPayment, setMethodOfPayment] = useState("Nie wybrano");
+    const [paymentMethod, setMethodOfPayment] = useState();
+    const [paymentMethodText, setPaymentMethodText] = useState("Nie wybrano");
     const [postage, setPostage] = useState(0);
+    const [postageCost, setPostageMethodCost] = useState(0);
     const [error, setError] = useState("");
 
     useEffect(() => {
@@ -46,12 +50,12 @@ const Checkout = () => {
     const handleSubmit = async (e) => {
         e.preventDefault();
 
-        if(methodOfPayment === "Nie wybrano") {
+        if(!paymentMethod) {
             setError("Wybierz metodę płatności.");
             return;
         }
 
-        if(postage === 0) {
+        if(!postage) {
             setError("Wybierz sposób dostawy.");
             return;
         }
@@ -59,9 +63,24 @@ const Checkout = () => {
         setError("");
 
         try {
-            const response = await axios.post("http://localhost:8080/checkout/add-order", {
-                
-            });
+            const addressDetails = {
+                phone_number: phoneNumber,
+                residence,
+                town,
+                zip_code: zipCode,
+                country
+            };
+
+            const orderedData = {
+                address_details: addressDetails,
+                payment_method: paymentMethod,
+                postage,
+                final_price: finalPrice(),
+                user_id: user.id
+            };
+            const response = await axios.post("http://localhost:8080/checkout/add-order", orderedData);
+            await clearCart();
+            window.location.replace("/home");
         } catch (error) {
             console.error("Błąd finalizowania zamówienia: ", error);
         }
@@ -69,6 +88,10 @@ const Checkout = () => {
 
     const getTotalPrice = () => {
         return cart.reduce((total, product) => total + product.totalPrice, 0);
+    };
+
+    const finalPrice = () => {
+        return getTotalPrice() + postageCost;
     };
 
     if(!user)
@@ -190,8 +213,8 @@ const Checkout = () => {
                                                 aria-describedby="credit-card-text" 
                                                 type="radio" 
                                                 name="payment-method" 
-                                                value={methodOfPayment}
-                                                onChange={() => { setMethodOfPayment("Karta kredytowa"); setError("");}} 
+                                                value={paymentMethod}
+                                                onChange={() => { setMethodOfPayment(PaymentMethodsEnum.CreditCard); setError(""); setPaymentMethodText("Karta kredytowa")}} 
                                                 className="h-4 w-4 border-gray-300 bg-white text-primary-600 focus:ring-2 focus:ring-primary-600 dark:border-gray-600 dark:bg-gray-700 dark:ring-offset-gray-800 dark:focus:ring-primary-600"
                                             />
                                         </div>
@@ -211,8 +234,8 @@ const Checkout = () => {
                                                 aria-describedby="pay-on-delivery-text" 
                                                 type="radio" 
                                                 name="payment-method" 
-                                                value={methodOfPayment}
-                                                onChange={() => { setMethodOfPayment("Przy odbiorze"); setError(""); }} 
+                                                value={paymentMethod}
+                                                onChange={() => { setMethodOfPayment(PaymentMethodsEnum.OnDelivery); setError(""); setPaymentMethodText("Przy odbiorze")}} 
                                                 className="h-4 w-4 border-gray-300 bg-white text-primary-600 focus:ring-2 focus:ring-primary-600 dark:border-gray-600 dark:bg-gray-700 dark:ring-offset-gray-800 dark:focus:ring-primary-600" 
                                             />
                                         </div>
@@ -232,8 +255,8 @@ const Checkout = () => {
                                                 aria-describedby="paypal-text" 
                                                 type="radio" 
                                                 name="payment-method" 
-                                                value={methodOfPayment}
-                                                onChange={() => { setMethodOfPayment("BLIK"); setError(""); }} 
+                                                value={paymentMethod}
+                                                onChange={() => { setMethodOfPayment(PaymentMethodsEnum.Blik); setError(""); setPaymentMethodText("BLIK")}} 
                                                 className="h-4 w-4 border-gray-300 bg-white text-primary-600 focus:ring-2 focus:ring-primary-600 dark:border-gray-600 dark:bg-gray-700 dark:ring-offset-gray-800 dark:focus:ring-primary-600" 
                                             />
                                         </div>
@@ -259,7 +282,7 @@ const Checkout = () => {
                                                 type="radio" 
                                                 name="delivery-method" 
                                                 value={postage}
-                                                onChange={() => { setPostage(12.99); setError("") }} 
+                                                onChange={() => { setPostage(PostageMethodsEnum.Dhl); setError(""); setPostageMethodCost(12.99)}} 
                                                 className="h-4 w-4 border-gray-300 bg-white text-primary-600 focus:ring-2 focus:ring-primary-600 dark:border-gray-600 dark:bg-gray-700 dark:ring-offset-gray-800 dark:focus:ring-primary-600"
                                             />
                                         </div>
@@ -280,7 +303,7 @@ const Checkout = () => {
                                             type="radio" 
                                             name="delivery-method" 
                                             value={postage}
-                                            onChange={() => { setPostage(16.99); setError(""); }} 
+                                            onChange={() => { setPostage(PostageMethodsEnum.InPostExpress); setError(""); setPostageMethodCost(16.99)}} 
                                             className="h-4 w-4 border-gray-300 bg-white text-primary-600 focus:ring-2 focus:ring-primary-600 dark:border-gray-600 dark:bg-gray-700 dark:ring-offset-gray-800 dark:focus:ring-primary-600" 
                                             />
                                         </div>
@@ -306,17 +329,17 @@ const Checkout = () => {
 
                                 <dl className="flex items-center justify-between gap-4 py-3">
                                     <dt className="text-base font-normal dark:text-gray-400">Koszt przesyłki:</dt>
-                                    <dd className="text-base font-medium dark:text-white">{postage} zł</dd>
+                                    <dd className="text-base font-medium dark:text-white">{postageCost} zł</dd>
                                 </dl>
 
                                 <dl className="flex items-center justify-between gap-4 py-3">
                                     <dt className="text-base font-normal dark:text-gray-400">Metoda płatności:</dt>
-                                    <dd className="text-base font-medium dark:text-white">{methodOfPayment}</dd>
+                                    <dd className="text-base font-medium dark:text-white">{paymentMethodText}</dd>
                                 </dl>
 
                                 <dl className="flex items-center justify-between gap-4 py-3">
                                     <dt className="text-base font-bold dark:text-white">Łącznie: </dt>
-                                    <dd className="text-base font-bold dark:text-white">8,392.00 zł</dd>
+                                    <dd className="text-base font-bold dark:text-white">{finalPrice()} zł</dd>
                                 </dl>
                             </div>
                         </div>

@@ -7,7 +7,7 @@ import { CartContext } from '../context/CartContext';
 const NavigationBar = () => {
   const [user, setUser] = useState(null);
   const [isOpen, setIsOpen] = useState(false);
-  const {cart, clearCart} = useContext(CartContext);
+  const {clearCart} = useContext(CartContext);
 
   useEffect(() => {
     const fetchUser = async () => {

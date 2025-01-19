@@ -1,28 +1,27 @@
 import { query } from "../database.js";
 
 export const addOrder = async (req, res) => {
-    const { firstName, lastName, email, password, accountLevel} = req.body;
+    const {address_details, payment_method, postage, final_price, user_id} = req.body;
 
     try {
         //Sprawdzamy czy użytkownik o podanym emailu już istnieje
-        const userResult = await query("SELECT * FROM users WHERE email = $1", [email]);
+        const user = await query("SELECT * FROM users WHERE id = $1", [user_id]);
 
-        if (userResult.rows.length > 0)
-            return res.status(400).json({ message: "Użytkownik już istnieje." });
+        if (user.rows.length == 0)
+            return res.status(400).json({ message: "Nie znaleziono użytkownika." });
         
-        const hashedPassword = await bcrypt.hash(password, 10);
-
-        const newUser = await query(
-            "INSERT INTO users(first_name, last_name, email, password, level) VALUES($1, $2, $3, $4, $5) RETURNING *",
-            [firstName, lastName, email, hashedPassword, accountLevel]
+        const result = await query(
+            "INSERT INTO orders (address_details, payment_method, delivery_method, price, user_id) VALUES($1, $2, $3, $4, $5) RETURNING *",
+            [address_details, payment_method, postage, final_price, user_id]
         );
 
-        const token = jwt.sign({ id: newUser.rows[0].id }, process.env.JWT_SECRET, { expiresIn: "1h" });
-
-        res.status(201).json({ token });
+        res.status(201).json({
+            message: 'Zamówienie zostało utworzone pomyślnie.',
+            result,
+        });
     }
     catch (error) {
-        console.error("Błąd servera:", error);
-        res.status(500).json({ message: "Błąd serwera." });
+        console.error("Błąd przy tworzeniu zamówienia:", error);
+        res.status(500).json({ message: "Błąd przy tworzeniu zamówienia." });
     }
 };
