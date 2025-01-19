@@ -1,4 +1,27 @@
 import { query } from "../database.js";
+import sendOrderConfirmationEmail from "../services/emailService.js";
+import { PaymentMethodsEnum } from "../enums/PaymentMethodsEnum.js";
+import { PostageMethodsEnum } from "../enums/PostageMethodsEnum.js"
+
+const choosePaymentMethodName = (paymentMethod) => {
+    switch(paymentMethod) {
+        case PaymentMethodsEnum.CreditCard:
+            return "Karta kredytowa";
+        case PaymentMethodsEnum.OnDelivery:
+            return "Za pobraniem";
+        case PaymentMethodsEnum.Blik:
+            return "BLIK";
+    }
+};
+
+const choosePostageMethodName = (postageMethod) => {
+    switch(postageMethod) {
+        case PostageMethodsEnum.Dhl:
+            return "DHL";
+        case PostageMethodsEnum.InPostExpress:
+            return "InPostExpress";
+    }
+};
 
 export const addOrder = async (req, res) => {
     const {address_details, payment_method, postage, final_price, user_id} = req.body;
@@ -14,6 +37,13 @@ export const addOrder = async (req, res) => {
             "INSERT INTO orders (address_details, payment_method, delivery_method, price, user_id) VALUES($1, $2, $3, $4, $5) RETURNING *",
             [address_details, payment_method, postage, final_price, user_id]
         );
+
+        await sendOrderConfirmationEmail(user.rows[0].email, {
+            addressDetails: address_details,
+            paymentMethod: choosePaymentMethodName(payment_method),
+            postageMethod: choosePostageMethodName(postage),
+            totalCost: final_price,
+        });
 
         res.status(201).json({
             message: 'Zamówienie zostało utworzone pomyślnie.',

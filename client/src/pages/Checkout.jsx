@@ -288,7 +288,7 @@ const Checkout = () => {
                                         </div>
 
                                         <div className="ms-4 text-sm">
-                                            <label htmlFor="dhl" className="font-medium leading-none text-secondary"> 12.99 zł - DHL </label>
+                                            <label htmlFor="dhl" className="font-medium leading-none text-secondary"> 12.99 PLN - DHL </label>
                                             <p id="dhl-text" className="mt-1 text-xs font-normal text-secondary">Przesyłka dotrze w przeciągu 2-3 dni roboczych</p>
                                         </div>
                                     </div>
@@ -309,7 +309,7 @@ const Checkout = () => {
                                         </div>
 
                                         <div className="ms-4 text-sm">
-                                            <label htmlFor="express" className="font-medium leading-none text-secondary dark:text-white"> 16.99 zł - InPost Express </label>
+                                            <label htmlFor="express" className="font-medium leading-none text-secondary dark:text-white"> 16.99 PLN - InPost Express </label>
                                             <p id="express-text" className="mt-1 text-xs font-normal text-secondary">Przesyłka dotrze jeszcze dzisiaj</p>
                                         </div>
                                     </div>
@@ -324,12 +324,12 @@ const Checkout = () => {
                             <div className="-my-3 divide-y divide-gray-200 dark:divide-gray-800">
                                 <dl className="flex items-center justify-between gap-4 py-3">
                                     <dt className="text-base font-normal dark:text-gray-400">Cena podstawowa: </dt>
-                                    <dd className="text-base font-medium dark:text-white">{getTotalPrice()} zł</dd>
+                                    <dd className="text-base font-medium dark:text-white">{getTotalPrice()} PLN</dd>
                                 </dl>
 
                                 <dl className="flex items-center justify-between gap-4 py-3">
                                     <dt className="text-base font-normal dark:text-gray-400">Koszt przesyłki:</dt>
-                                    <dd className="text-base font-medium dark:text-white">{postageCost} zł</dd>
+                                    <dd className="text-base font-medium dark:text-white">{postageCost} PLN</dd>
                                 </dl>
 
                                 <dl className="flex items-center justify-between gap-4 py-3">
@@ -339,7 +339,7 @@ const Checkout = () => {
 
                                 <dl className="flex items-center justify-between gap-4 py-3">
                                     <dt className="text-base font-bold dark:text-white">Łącznie: </dt>
-                                    <dd className="text-base font-bold dark:text-white">{finalPrice()} zł</dd>
+                                    <dd className="text-base font-bold dark:text-white">{finalPrice()} PLN</dd>
                                 </dl>
                             </div>
                         </div>

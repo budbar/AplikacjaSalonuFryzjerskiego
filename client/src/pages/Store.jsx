@@ -33,7 +33,7 @@ function Store() {
             <img src={product.url} alt={product.alt_text} className="w-full h-48 object-cover rounded-t-lg mb-4" />
             <h2 className="text-xl font-semibold mb-2">{product.name}</h2>
             <p className="text-gray-700 mb-2">{product.description}</p>
-            <p className="text-gray-900 font-bold mb-4">{product.price} zł</p>
+            <p className="text-gray-900 font-bold mb-4">{product.price} PLN</p>
             <button
               className="w-full bg-button hover:bg-button-dark text-white py-2 rounded font-bold transition-colors duration-300"
               onClick={() => addToCart({
