@@ -77,14 +77,14 @@ const Multimedia = () => {
 
   return (
     <div className="max-w-4xl mx-auto mt-10 p-6 bg-primary rounded-lg shadow-md text-secondary">
-      <h1 className="text-2xl font-bold mb-4">Dodaj zdjęcia do bazy danych</h1>
+      <h1 className="text-2xl font-bold mb-4 border-b border-gray-200 pb-2">Dodaj zdjęcia do bazy danych</h1>
       <form onSubmit={handleSubmit}>
         <div className="mb-4">
           <label className="block font-bold">Wybierz zdjęcie:</label>
           <input
             type="file"
             name="file"
-            className="w-full px-3 py-2 border-gray-700 bg-input rounded"
+            className="w-full px-3 py-2 border border-gray-200 bg-input rounded"
             onChange={handleFileChange}
             required
           />
@@ -94,7 +94,7 @@ const Multimedia = () => {
           <input
             type="text"
             name="name"
-            className="w-full px-3 py-2 border-gray-700 bg-input rounded"
+            className="w-full px-3 py-2 border border-gray-300 bg-input rounded-lg"
             value={name}
             onChange={(e) => setName(e.target.value)}
             required
@@ -105,7 +105,7 @@ const Multimedia = () => {
           <input
             type="text"
             name="altText"
-            className="w-full px-3 py-2 border-gray-700 bg-input rounded"
+            className="w-full px-3 py-2 border border-gray-300 bg-input rounded-lg"
             value={altText}
             onChange={(e) => setAltText(e.target.value)}
             required
@@ -117,17 +117,17 @@ const Multimedia = () => {
       <h2 className="text-xl font-bold mt-10 mb-4">Dodane zdjęcia</h2>
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
         {images.map((image) => (
-          <div key={image.id} className="bg-white p-4 rounded shadow-md">
+          <div key={image.id} className="bg-color p-4 rounded shadow-md">
             <img src={image.url} alt={image.alt_text} className="w-full h-auto mb-4" />
             <input
               type="text"
-              className="w-full px-3 py-2 border-gray-700 bg-input rounded mb-2"
+              className="w-full px-3 py-2 border border-gray-300 bg-input rounded-lg mb-2"
               value={image.name}
               onChange={(e) => setImages(images.map((img) => (img.id === image.id ? { ...img, name: e.target.value } : img)))}
             />
             <input
               type="text"
-              className="w-full px-3 py-2 border-gray-700 bg-input rounded mb-2"
+              className="w-full px-3 py-2 border border-gray-300 bg-input rounded-lg mb-2"
               value={image.alt_text}
               onChange={(e) => setImages(images.map((img) => (img.id === image.id ? { ...img, alt_text: e.target.value } : img)))}
             />
@@ -138,7 +138,7 @@ const Multimedia = () => {
               Zaktualizuj
             </button>
             <button
-              className="w-full bg-red-500 hover-bg-red-700 text-secondary py-2 rounded font-bold"
+              className="w-full bg-button-cancel hover-bg-red-700 text-secondary py-2 rounded font-bold"
               onClick={() => handleDelete(image.id)}
             >
               Usuń

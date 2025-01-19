@@ -111,7 +111,9 @@ const Cart = () => {
       </div>
     </section>
     ): (
-      <>Koszyk jest pusty</>
+      <div className="h-screen flex items-center justify-center">
+        <div className="bg-primary flex w-60 h-20 rounded-lg text-secondary items-center justify-center font-bold">Koszyk jest pusty</div>
+      </div>
     )
   );
 }

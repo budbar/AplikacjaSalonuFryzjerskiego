@@ -59,7 +59,7 @@ function Account() {
 
   return (
     <div className="max-w-4xl mx-auto mt-10 p-6 bg-primary rounded-lg shadow-md text-secondary">
-      <h1 className="text-2xl font-bold mb-4">Konto użytkownika</h1>
+      <h1 className="text-2xl font-bold mb-4 border-b border-gray-200 pb-2">Konto użytkownika</h1>
       <div className="flex flex-col lg:flex-row">
         <div className="lg:w-1/2 lg:pr-4 mb-6 lg:mb-0">
           <h2 className="text-xl font-bold mb-4">Informacje o użytkowniku</h2>
@@ -68,7 +68,7 @@ function Account() {
             <input
               type="email"
               name="email"
-              className="w-full px-3 py-2 border border-gray-700 rounded bg-input"
+              className="w-full px-3 py-2 border border-gray-300 rounded bg-input"
               value={user.email || ""}
               readOnly
             />
@@ -78,7 +78,7 @@ function Account() {
             <input
               type="text"
               name="firstName"
-              className="w-full px-3 py-2 border border-gray-700 rounded bg-input"
+              className="w-full px-3 py-2 border border-gray-300 rounded bg-input"
               value={user.first_name || ""}
               readOnly
             />
@@ -88,7 +88,7 @@ function Account() {
             <input
               type="text"
               name="lastName"
-              className="w-full px-3 py-2 border border-gray-700 rounded bg-input"
+              className="w-full px-3 py-2 border border-gray-300 rounded bg-input"
               value={user.last_name || ""}
               readOnly
             />
@@ -102,7 +102,7 @@ function Account() {
               <input
                 type="text"
                 name="residence"
-                className="w-full px-3 py-2 border-gray-700 bg-input rounded"
+                className="w-full px-3 py-2 border border-gray-300 bg-input rounded"
                 value={residence}
                 onChange={(e) => setResidence(e.target.value)}
                 required
@@ -113,7 +113,7 @@ function Account() {
               <input
                 type="text"
                 name="town"
-                className="w-full px-3 py-2 border-gray-700 bg-input rounded"
+                className="w-full px-3 py-2 border border-gray-300 bg-input rounded"
                 value={town}
                 onChange={(e) => setTown(e.target.value)}
                 required
@@ -124,7 +124,7 @@ function Account() {
               <input
                 type="text"
                 name="zipCode"
-                className="w-full px-3 py-2 border-gray-700 bg-input rounded"
+                className="w-full px-3 py-2 border border-gray-300 bg-input rounded"
                 value={zipCode}
                 onChange={(e) => setZipCode(e.target.value)}
                 required
@@ -135,7 +135,7 @@ function Account() {
               <input
                 type="text"
                 name="country"
-                className="w-full px-3 py-2 border-gray-700 bg-input rounded"
+                className="w-full px-3 py-2 border border-gray-300 bg-input rounded"
                 value={country}
                 onChange={(e) => setCountry(e.target.value)}
                 required
@@ -146,7 +146,7 @@ function Account() {
               <input
                 type="text"
                 name="phoneNumber"
-                className="w-full px-3 py-2 border-gray-700 bg-input rounded"
+                className="w-full px-3 py-2 border border-gray-300 bg-input rounded"
                 value={phoneNumber}
                 onChange={(e) => setPhoneNumber(e.target.value)}
                 required

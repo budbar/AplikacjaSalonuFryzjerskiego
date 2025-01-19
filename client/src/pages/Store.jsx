@@ -25,30 +25,36 @@ function Store() {
   }, []);
 
   return (
-    <div className="container mx-auto mt-10 p-6">
-      <h1 className="text-3xl font-bold mb-6 text-center text-secondary">Sprawdź szeroką gamę produktów!</h1>
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-        {products.map((product) => (
-          <div key={product.id} className="bg-white p-6 rounded-lg shadow-lg hover:shadow-xl transition-shadow duration-300">
-            <img src={product.url} alt={product.alt_text} className="w-full h-48 object-cover rounded-t-lg mb-4" />
-            <h2 className="text-xl font-semibold mb-2">{product.name}</h2>
-            <p className="text-gray-700 mb-2">{product.description}</p>
-            <p className="text-gray-900 font-bold mb-4">{product.price} PLN</p>
-            <button
-              className="w-full bg-button hover:bg-button-dark text-white py-2 rounded font-bold transition-colors duration-300"
-              onClick={() => addToCart({
-                id: product.id,
-                name: product.name,
-                description: product.description,
-                price: product.price
-              })}
-            >
-              Dodaj do koszyka
-            </button>
-          </div>
-        ))}
+    products.length > 0 ? (
+      <div className="container mx-auto max-w-screen-xl mt-10 bg-primary rounded-lg px-4 py-4">
+        <h1 className="text-3xl font-bold mb-6 text-secondary">Sklep</h1>
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          {products.map((product) => (
+            <div key={product.id} className="bg-color p-6 rounded-lg shadow-lg hover:shadow-xl transition-shadow duration-300">
+              <img src={product.url} alt={product.alt_text} className="w-full h-48 object-cover rounded-lg mb-4" />
+              <h2 className="text-xl text-secondary font-semibold mb-2">{product.name}</h2>
+              <p className="mb-2 text-secondary">{product.description}</p>
+              <p className="font-bold mb-4 text-secondary">{product.price} PLN</p>
+              <button
+                className="w-full bg-button hover:bg-button-dark text-secondary py-2 rounded font-bold transition-colors duration-300"
+                onClick={() => addToCart({
+                  id: product.id,
+                  name: product.name,
+                  description: product.description,
+                  price: product.price
+                })}
+              >
+                Dodaj do koszyka
+              </button>
+            </div>
+          ))}
+        </div>
       </div>
-    </div>
+    ) : (
+      <div className="h-screen flex items-center justify-center">
+        <div className="bg-primary flex w-60 h-20 rounded-lg text-secondary items-center justify-center font-bold">Sklep jest pusty</div>
+      </div>
+    )
   );
 }
 

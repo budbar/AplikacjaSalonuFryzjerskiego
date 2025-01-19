@@ -41,12 +41,12 @@ const ImageSlider = ({ images, numberOfSlides }) => {
   };
 
   return (
-    <div className="flex justify-center items-center min-h-screen pt-20">
+    <div className="flex justify-center items-center pt-20">
       <div className="w-4/5">
         <Slider {...settings}>
           {images.map((image) => (
             <div key={image.id}>
-              <img src={image.url} alt={image.alt_text} className="w-full h-auto" />
+              <img src={image.url} alt={image.alt_text} className="w-full h-auto rounded-lg" />
             </div>
           ))}
         </Slider>

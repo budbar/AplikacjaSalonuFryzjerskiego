@@ -51,9 +51,9 @@ const NavigationBar = () => {
         <ul className={`lg:flex space-x-16 ${isOpen ? 'block' : 'hidden'} lg:block`}>
           <li><Link to="/home" className="hover:text-gray-300">Strona główna</Link></li>
           <li><Link to="/store" className="hover:text-gray-300">Sklep</Link></li>
-          <li><Link to="/about" className="hover:text-gray-300">O nas</Link></li>
-          <li><Link to="/services" className="hover:text-gray-300">Usługi</Link></li>
-          <li><Link to="/contact" className="hover:text-gray-300">Kontakt</Link></li>
+          {/* <li><Link to="/about" className="hover:text-gray-300">O nas</Link></li> */}
+          {/* <li><Link to="/services" className="hover:text-gray-300">Usługi</Link></li> */}
+          {/* <li><Link to="/contact" className="hover:text-gray-300">Kontakt</Link></li> */}
           <li className="relative group">
             {user ? (
               <>

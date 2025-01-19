@@ -52,13 +52,13 @@ const SliderSettings = () => {
   return (
     <>
       <div className="max-w-4xl mx-auto mt-10 p-6 bg-primary rounded-lg shadow-md text-secondary">
-        <h2 className="text-xl font-bold mb-4">Wybrane zdjęcia do slidera</h2>
+        <h2 className="text-xl font-bold mb-4 border-b border-gray-200 pb-2">Wybrane zdjęcia do slidera</h2>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
           {selectedImages.map((image) => (
-            <div key={image.id} className="bg-white p-4 rounded shadow-md">
-              <img src={image.url} alt={image.alt_text} className="w-full h-auto mb-4" />
+            <div key={image.id} className="bg-color p-4 rounded-lg shadow-md">
+              <img src={image.url} alt={image.alt_text} className="w-full h-auto mb-4 rounded-lg" />
               <button
-                className="w-full bg-red-500 hover-bg-red-700 text-secondary py-2 rounded font-bold mb-2"
+                className="w-full bg-button-cancel hover-bg-red-700 text-secondary py-2 rounded font-bold mb-2"
                 onClick={() => handleSliderEdit(image.id, SliderSelectionEnum.NotSelectedForSlider)}
               >
                 Usuń ze slidera
@@ -67,12 +67,12 @@ const SliderSettings = () => {
           ))}
         </div>
       </div>
-      <div className="max-w-4xl mx-auto mt-10 p-6 bg-primary rounded-lg shadow-md text-secondary">
-        <h2 className="text-xl font-bold mt-10 mb-4">Zdjęcia do wyboru</h2>
+      <div className="max-w-4xl mx-auto mt-4 p-6 bg-primary rounded-lg shadow-md text-secondary">
+        <h2 className="text-xl font-bold mb-4 border-b border-gray-200 pb-2">Zdjęcia do wyboru</h2>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
           {availableImages.map((image) => (
-            <div key={image.id} className="bg-white p-4 rounded shadow-md">
-              <img src={image.url} alt={image.alt_text} className="w-full h-auto mb-4" />
+            <div key={image.id} className="bg-color p-4 rounded shadow-md">
+              <img src={image.url} alt={image.alt_text} className="w-full h-auto mb-4 rounded-lg" />
               <button
                 className="w-full bg-button hover-bg-button text-secondary py-2 rounded font-bold mb-2"
                 onClick={() => handleSliderEdit(image.id, SliderSelectionEnum.SelectedForSlider)}

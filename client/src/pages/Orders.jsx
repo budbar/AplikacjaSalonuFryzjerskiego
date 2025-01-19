@@ -69,11 +69,11 @@ const Orders = () => {
     }
 
     return (
-        <div className="container mx-auto mt-10 p-6">
-          <h1 className="text-3xl font-bold mb-6 text-center text-secondary">Zamówienia</h1>
+        <div className="container bg-primary text-secondary rounded-lg mx-auto max-w-screen-xl mt-10 p-4 p-4">
+          <h1 className="text-3xl font-bold mb-6 text-secondary">Zamówienia</h1>
             {
                 orders.length > 0 ? (
-                    <table className="min-w-full bg-primary text-secondary rounded-lg">
+                    <table className="min-w-full rounded-lg">
                         <thead>
                         <tr>
                             <th className="py-2 px-4 border-b">#</th>
