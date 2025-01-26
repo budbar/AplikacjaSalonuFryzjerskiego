@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import ImageSlider from "../components/Slider";
+import EmptyPageStatement from "../components/EmptyPageStatement";
 
 function Home() {
   const [images, setImages] = useState([]);
@@ -23,11 +24,9 @@ function Home() {
     fetchImages();
   }, []);
 
-  if(!images)
+  if(!images || images.length == 0)
     return (
-      <div>
-        Ładowanie...
-      </div>
+      <EmptyPageStatement statement={"Nie dodano zdjęć do slidera."}/>
     );
 
   return (

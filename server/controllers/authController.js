@@ -46,7 +46,11 @@ export const login = async (req, res) => {
         if(!isPasswordMatch)
             return res.status(400).json({ message: "Nieprawidłowy email lub hasło." });
 
-        const token = jwt.sign({ id: user.id }, process.env.JWT_SECRET, { expiresIn: "1h" });
+        const token = jwt.sign({ 
+                                    id: user.id,
+                                    level: user.level
+                                }, 
+                            process.env.JWT_SECRET, { expiresIn: "1h" });
 
         //Przechowujemy dane w sesji
         req.session.user = {
@@ -54,9 +58,8 @@ export const login = async (req, res) => {
             first_name: user.first_name,
             last_name: user.last_name,
             email: user.email,
-            password: user.password,
+            level: user.level,
             token: token,
-            level: user.level
         };
 
         res.status(200).json({ token });

@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useContext } from "react";
 import axios from "axios";
 import { CartContext } from "../context/CartContext";
+import EmptyPageStatement from "../components/EmptyPageStatement";
 
 function Store() {
   const [ products, setProducts ] = useState([]);
@@ -51,9 +52,7 @@ function Store() {
         </div>
       </div>
     ) : (
-      <div className="h-screen flex items-center justify-center">
-        <div className="bg-primary flex w-60 h-20 rounded-lg text-secondary items-center justify-center font-bold">Sklep jest pusty</div>
-      </div>
+      <EmptyPageStatement statement={"Brak produktów w sklepie."}/>
     )
   );
 }

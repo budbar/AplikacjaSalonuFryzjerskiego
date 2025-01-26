@@ -1,4 +1,5 @@
 import express from "express";
+// import verifyToken from "../middleware/auth.js";
 import { addImage, updateImage, deleteImage, getImages } from "../controllers/multimediaController.js";
 import multer from "multer";
 
