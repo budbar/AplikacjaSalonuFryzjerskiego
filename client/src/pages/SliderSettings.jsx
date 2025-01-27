@@ -58,7 +58,7 @@ const SliderSettings = () => {
             <div key={image.id} className="bg-color p-4 rounded-lg shadow-md">
               <img src={image.url} alt={image.alt_text} className="w-full h-auto mb-4 rounded-lg" />
               <button
-                className="w-full bg-button-cancel hover-bg-red-700 text-secondary py-2 rounded font-bold mb-2"
+                className="w-full bg-red-500 border border-2 border-red-300 text-secondary py-2 rounded font-bold mb-2"
                 onClick={() => handleSliderEdit(image.id, SliderSelectionEnum.NotSelectedForSlider)}
               >
                 Usuń ze slidera

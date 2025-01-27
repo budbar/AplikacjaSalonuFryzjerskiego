@@ -102,7 +102,7 @@ const Checkout = () => {
     );
 
     return (
-        <section className="py-8 antialiased dark:bg-gray-900 md:py-16">
+        <section className="py-8 antialiased md:py-16">
             <form onSubmit={handleSubmit} className="mx-auto max-w-screen-xl bg-primary rounded-lg px-4 py-4 ">
                 <div className="mt-6 sm:mt-8 lg:flex lg:items-start lg:gap-12 xl:gap-16">
                     <div className="min-w-0 flex-1 space-y-8">
@@ -114,18 +114,18 @@ const Checkout = () => {
                                     <input 
                                         type="text" 
                                         id="first_name" 
-                                        className="block w-full rounded-lg border border-gray-300 bg-input p-2.5 text-sm text-secondary focus:border-primary-500 focus:ring-primary-500 dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:placeholder:text-gray-400 dark:focus:border-primary-500 dark:focus:ring-primary-500" 
+                                        className="block w-full rounded-lg bg-input p-2.5 text-sm text-secondary focus:border-primary-500 focus:ring-primary-500" 
                                         value={user.first_name}
                                         readOnly
                                     />
                                 </div>
 
                                 <div>
-                                    <label htmlFor="last_name" className="mb-2 block text-sm font-medium text-secondary dark:text-white"> Nazwisko: </label>
+                                    <label htmlFor="last_name" className="mb-2 block text-sm font-medium text-secondary"> Nazwisko: </label>
                                     <input 
                                         type="text" 
                                         id="last_name" 
-                                        className="block w-full rounded-lg border border-gray-300 bg-input p-2.5 text-sm text-secondary focus:border-primary-500 focus:ring-primary-500 dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:placeholder:text-gray-400 dark:focus:border-primary-500 dark:focus:ring-primary-500" 
+                                        className="block w-full rounded-lg border border-gray-300 bg-input p-2.5 text-sm text-secondary focus:border-primary-500 focus:ring-primary-5000" 
                                         value={user.last_name}
                                         readOnly
                                     />
@@ -136,7 +136,7 @@ const Checkout = () => {
                                     <input 
                                         type="email" 
                                         id="email" 
-                                        className="block w-full rounded-lg border border-gray-300 bg-input p-2.5 text-sm text-secondary focus:border-primary-500 focus:ring-primary-500 dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:placeholder:text-gray-400 dark:focus:border-primary-500 dark:focus:ring-primary-500" 
+                                        className="block w-full rounded-lg border border-gray-300 bg-input p-2.5 text-sm text-secondary focus:border-primary-500 focus:ring-primary-500" 
                                         value={user.email}
                                         readOnly 
                                     />
@@ -226,7 +226,7 @@ const Checkout = () => {
                                     </div>
                                 </div>
 
-                                <div className="rounded-lg border border-gray-200 bg-input p-4 ps-4 dark:border-gray-700 dark:bg-gray-800">
+                                <div className="rounded-lg bg-input p-4 ps-4">
                                     <div className="flex items-start">
                                         <div className="flex h-5 items-center">
                                             <input 
@@ -273,7 +273,7 @@ const Checkout = () => {
                             <h3 className="text-xl font-semibold text-secondary dark:text-white">Sposób dostawy</h3>
 
                             <div className="grid grid-cols-1 gap-4 md:grid-cols-3">
-                                <div className="rounded-lg border border-gray-200 bg-input p-4 ps-4 dark:border-gray-700 dark:bg-gray-800">
+                                <div className="rounded-lg bg-input p-4 ps-4">
                                     <div className="flex items-start">
                                         <div className="flex h-5 items-center">
                                             <input 
@@ -294,7 +294,7 @@ const Checkout = () => {
                                     </div>
                                 </div>
 
-                                <div className="rounded-lg border border-gray-200 bg-input p-4 ps-4 dark:border-gray-700 dark:bg-gray-800">
+                                <div className="rounded-lg bg-input p-4 ps-4">
                                     <div className="flex items-start">
                                         <div className="flex h-5 items-center">
                                             <input 
@@ -318,28 +318,28 @@ const Checkout = () => {
                         </div>
                     </div>
 
-                    <div className="mt-6 w-full space-y-6 sm:mt-8 lg:mt-0 lg:max-w-xs xl:max-w-md bg-input text-secondary rounded-lg p-4 border border-gray-200">
-                        <p className="text-xl font-semibold border-b border-gray-200 pb-2">Podsumowanie płatności</p>
+                    <div className="mt-6 w-full space-y-6 sm:mt-8 lg:mt-0 lg:max-w-xs xl:max-w-md text-secondary rounded-lg p-4 bg-element">
+                        <p className="text-xl font-semibold pb-2">Podsumowanie płatności</p>
                         <div className="flow-root">
                             <div className="-my-3 divide-y divide-gray-200 dark:divide-gray-800">
                                 <dl className="flex items-center justify-between gap-4 py-3">
-                                    <dt className="text-base font-normal dark:text-gray-400">Cena podstawowa: </dt>
-                                    <dd className="text-base font-medium dark:text-white">{getTotalPrice()} PLN</dd>
+                                    <dt className="text-base font-normal">Cena podstawowa: </dt>
+                                    <dd className="text-base font-medium">{getTotalPrice()} PLN</dd>
                                 </dl>
 
                                 <dl className="flex items-center justify-between gap-4 py-3">
-                                    <dt className="text-base font-normal dark:text-gray-400">Koszt przesyłki:</dt>
-                                    <dd className="text-base font-medium dark:text-white">{postageCost} PLN</dd>
+                                    <dt className="text-base font-normal">Koszt przesyłki:</dt>
+                                    <dd className="text-base font-medium">{postageCost} PLN</dd>
                                 </dl>
 
                                 <dl className="flex items-center justify-between gap-4 py-3">
-                                    <dt className="text-base font-normal dark:text-gray-400">Metoda płatności:</dt>
-                                    <dd className="text-base font-medium dark:text-white">{paymentMethodText}</dd>
+                                    <dt className="text-base font-normal">Metoda płatności:</dt>
+                                    <dd className="text-base font-medium">{paymentMethodText}</dd>
                                 </dl>
 
                                 <dl className="flex items-center justify-between gap-4 py-3">
-                                    <dt className="text-base font-bold dark:text-white">Łącznie: </dt>
-                                    <dd className="text-base font-bold dark:text-white">{finalPrice()} PLN</dd>
+                                    <dt className="text-base font-bold">Łącznie: </dt>
+                                    <dd className="text-base font-bold">{finalPrice()} PLN</dd>
                                 </dl>
                             </div>
                         </div>

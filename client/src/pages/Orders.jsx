@@ -69,7 +69,7 @@ const Orders = () => {
 
     return (
         <div className="container bg-primary text-secondary rounded-lg mx-auto max-w-screen-xl mt-10 p-4 p-4">
-            <h1 className="text-3xl font-bold mb-6 text-secondary">Zamówienia</h1>
+            <h1 className="text-3xl font-bold mb-10 text-secondary underline-border">Zamówienia</h1>
             <table className="min-w-full rounded-lg">
                 <thead>
                     <tr>
@@ -95,7 +95,7 @@ const Orders = () => {
                                             <button 
                                                 type="submit" 
                                                 className={`font-bold flex items-center justify-center rounded-lg px-5 py-2.5 text-sm mx-auto cursor-pointer mb-1
-                                                            ${order.status === 1 ? 'bg-gray-400 cursor-not-allowed' : 'bg-button'} w-32 h-10`}
+                                                            ${order.status === 1 ? 'bg-gray-400 border-gray-300 cursor-not-allowed' : 'bg-button'} w-32 h-10`}
                                                 onClick={() =>  handleSubmit(order.id, OrderStatusEnum.Realized)}
                                                 disabled={order.status === 1}
                                             >
@@ -103,8 +103,8 @@ const Orders = () => {
                                             </button>
                                             <button 
                                                 type="submit" 
-                                                className={`font-bold flex items-center justify-center rounded-lg px-5 py-2.5 text-sm mx-auto cursor-pointer  mb-1
-                                                            ${order.status === 2 ? 'bg-gray-400 cursor-not-allowed' : 'bg-button-warning'} w-32 h-10`}
+                                                className={`font-bold flex items-center justify-center rounded-lg px-5 py-2.5 text-sm mx-auto cursor-pointer mb-1 border border-2
+                                                            ${order.status === 2 ? 'bg-gray-400 border-gray-300 cursor-not-allowed' : 'bg-yellow-500  border-yellow-300'} w-32 h-10`}
                                                 onClick={() =>  handleSubmit(order.id, OrderStatusEnum.InProgress)}
                                                 disabled={order.status === 2}
                                             >
@@ -112,8 +112,8 @@ const Orders = () => {
                                             </button>
                                             <button 
                                                 type="submit" 
-                                                className={`font-bold flex items-center justify-center rounded-lg px-5 py-2.5 text-sm mx-auto cursor-pointer 
-                                                            ${order.status === 3 ? 'bg-gray-400 cursor-not-allowed' : 'bg-button-cancel'} w-32 h-10`}
+                                                className={`font-bold flex items-center justify-center rounded-lg px-5 py-2.5 text-sm mx-auto cursor-pointer border border-2
+                                                            ${order.status === 3 ? 'bg-gray-400 border-gray-300 cursor-not-allowed' : 'bg-red-500 border-red-300'} w-32 h-10`}
                                                 onClick={() =>  handleSubmit(order.id, OrderStatusEnum.Canceled)}
                                                 disabled={order.status === 3}
                                             >
@@ -123,8 +123,8 @@ const Orders = () => {
                                     ) : (
                                         <button 
                                             type="submit" 
-                                            className={`font-bold flex items-center justify-center rounded-lg px-5 py-2.5 text-sm mx-auto cursor-pointer 
-                                                        ${order.status === 3 || order.status === 1 ? 'bg-gray-400 cursor-not-allowed' : 'bg-button-cancel'}`}
+                                            className={`font-bold flex items-center justify-center rounded-lg px-5 py-2.5 text-sm mx-auto cursor-pointer border border-2 
+                                                        ${order.status === 3 || order.status === 1 ? 'bg-gray-400 border-gray-300 cursor-not-allowed' : 'bg-red-500 border-red-300'}`}
                                             onClick={() =>  handleSubmit(order.id, OrderStatusEnum.Canceled)}
                                             disabled={order.status===3}
                                         >

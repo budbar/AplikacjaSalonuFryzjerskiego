@@ -86,14 +86,14 @@ const ProductManagement = () => {
 
   return (
     <div className="max-w-4xl mx-auto mt-10 p-6 bg-primary rounded-lg shadow-md text-secondary">
-      <h1 className="text-2xl font-bold mb-4 border-b border-gray-200 pb-2">Dodaj produkty do bazy danych</h1>
+      <h1 className="text-2xl font-bold mb-4 underline-border pb-2">Dodaj produkty do bazy danych</h1>
       <form onSubmit={handleSubmit}>
         <div className="mb-4">
           <label className="block font-bold">Wybierz zdjęcie:</label>
           <input
             type="file"
             name="file"
-            className="w-full px-3 py-2 border border-gray-300 bg-input rounded-lg"
+            className="w-full px-3 py-2 bg-input rounded-lg"
             onChange={handleFileChange}
             required
           />
@@ -103,7 +103,7 @@ const ProductManagement = () => {
           <input
             type="text"
             name="name"
-            className="w-full px-3 py-2 border border-gray-300 bg-input rounded-lg"
+            className="w-full px-3 py-2 bg-input rounded-lg"
             value={name}
             onChange={(e) => setName(e.target.value)}
             required
@@ -114,7 +114,7 @@ const ProductManagement = () => {
           <input
             type="text"
             name="description"
-            className="w-full px-3 py-2 border border-gray-300 bg-input rounded-lg"
+            className="w-full px-3 py-2 bg-input rounded-lg"
             value={description}
             onChange={(e) => setDescription(e.target.value)}
             required
@@ -125,7 +125,7 @@ const ProductManagement = () => {
           <input
             type="number"
             name="price"
-            className="w-full px-3 py-2 border border-gray-300 bg-input rounded-lg"
+            className="w-full px-3 py-2 bg-input rounded-lg"
             value={price}
             onChange={(e) => setPrice(e.target.value)}
             required
@@ -136,7 +136,7 @@ const ProductManagement = () => {
             <input
                 type="text"
                 name="altText"
-                className="w-full px-3 py-2 border border-gray-300 bg-input rounded-lg"
+                className="w-full px-3 py-2 bg-input rounded-lg"
                 value={altText}
                 onChange={(e) => setAltText(e.target.value)}
                 required
@@ -181,7 +181,7 @@ const ProductManagement = () => {
               Zaktualizuj
             </button>
             <button
-              className="w-full bg-red-500 hover-bg-red-700 text-secondary py-2 rounded font-bold"
+              className="w-full bg-red-500 border border-2 border-red-300 text-secondary py-2 rounded font-bold"
               onClick={() => handleDelete(product.id)}
             >
               Usuń

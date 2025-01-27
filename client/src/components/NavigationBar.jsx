@@ -40,7 +40,7 @@ const NavigationBar = () => {
   return (
     <nav className="bg-primary p-4 text-secondary font-bold">
       <div className="container mx-auto flex justify-between items-center">
-        <div className="text-lg font-bold">Logo</div>
+        <div className="text-lg font-bold">Salon Fryzjerski</div>
         <div className="block lg:hidden">
           <button onClick={toggleMenu} className="focus:outline-none">
             <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
@@ -49,16 +49,16 @@ const NavigationBar = () => {
           </button>
         </div>
         <ul className={`lg:flex space-x-16 ${isOpen ? 'block' : 'hidden'} lg:block`}>
-          <li><Link to="/home" className="hover:text-gray-300">Strona główna</Link></li>
-          <li><Link to="/store" className="hover:text-gray-300">Sklep</Link></li>
-          {/* <li><Link to="/about" className="hover:text-gray-300">O nas</Link></li> */}
-          {/* <li><Link to="/services" className="hover:text-gray-300">Usługi</Link></li> */}
-          {/* <li><Link to="/contact" className="hover:text-gray-300">Kontakt</Link></li> */}
+          <li><Link to="/home" className="text-secondary-on-hover">Strona główna</Link></li>
+          <li><Link to="/store" className="text-secondary-on-hover">Sklep</Link></li>
+          {/* <li><Link to="/about" className="text-secondary-on-hover">O nas</Link></li> */}
+          {/* <li><Link to="/services" className="text-secondary-on-hover">Usługi</Link></li> */}
+          {/* <li><Link to="/contact" className="text-secondary-on-hover">Kontakt</Link></li> */}
           <li className="relative group">
             {user ? (
               <>
                 <Menu as="div" className="relative inline-block text-left">
-                  <div>
+                  <div className="text-secondary-on-hover">
                     <MenuButton>
                       {user.first_name} {user.last_name}
                     </MenuButton>
@@ -72,7 +72,7 @@ const NavigationBar = () => {
                       <MenuItem>
                         <Link
                           to="/cart"
-                          className="block px-4 py-2 text-sm text-secondary hover:text-gray-300"
+                          className="block px-4 py-2 text-sm text-secondary text-secondary-on-hover"
                         >
                           Koszyk
                         </Link>
@@ -80,7 +80,7 @@ const NavigationBar = () => {
                       <MenuItem>
                         <Link
                           to="/account"
-                          className="block px-4 py-2 text-sm text-secondary hover:text-gray-300"
+                          className="block px-4 py-2 text-sm text-secondary text-secondary-on-hover"
                         >
                           Konto
                         </Link>
@@ -88,7 +88,7 @@ const NavigationBar = () => {
                       <MenuItem>
                         <Link
                           to="/orders"
-                          className="block px-4 py-2 text-sm text-secondary hover:text-gray-300"
+                          className="block px-4 py-2 text-sm text-secondary text-secondary-on-hover"
                         >
                           Zamówienia
                         </Link>
@@ -99,7 +99,7 @@ const NavigationBar = () => {
                           <MenuItem>
                             <Link
                               to="/product-management"
-                              className="block px-4 py-2 text-sm text-secondary hover:text-gray-300"
+                              className="block px-4 py-2 text-sm text-secondary text-secondary-on-hover"
                             >
                               Zarządzanie produktami
                             </Link>
@@ -107,7 +107,7 @@ const NavigationBar = () => {
                           <MenuItem>
                             <Link
                               to="/multimedia"
-                              className="block px-4 py-2 text-sm text-secondary hover:text-gray-300"
+                              className="block px-4 py-2 text-sm text-secondary text-secondary-on-hover"
                             >
                               Multimedia
                             </Link>
@@ -115,7 +115,7 @@ const NavigationBar = () => {
                           <MenuItem>
                             <Link
                               to="/slider-settings"
-                              className="block px-4 py-2 text-sm text-secondary hover:text-gray-300"
+                              className="block px-4 py-2 text-sm text-secondary text-secondary-on-hover"
                             >
                               Ustawienia slidera
                             </Link>
@@ -128,7 +128,7 @@ const NavigationBar = () => {
                       <MenuItem>
                         <button
                           type="submit"
-                          className="block w-full px-4 py-2 text-left text-sm text-secondary hover:text-gray-300"
+                          className="block w-full px-4 py-2 text-left text-sm text-secondary text-secondary-on-hover"
                           onClick={handleLogout}
                         >
                           Wyloguj się
@@ -139,7 +139,7 @@ const NavigationBar = () => {
                 </Menu>
               </>
             ) : (
-              <Link to="/login" className="hover:text-gray-300">
+              <Link to="/login" className="text-secondary-on-hover">
                 Zaloguj się
               </Link>
             )}

@@ -31,7 +31,7 @@ function Login() {
               <label className="block font-bold">Adres e-mail:</label>
               <input 
                 type="email" 
-                className="w-full px-3 py-2 border border-gray-700 rounded bg-input" 
+                className="w-full px-3 py-2 border rounded bg-input" 
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}  
                 required

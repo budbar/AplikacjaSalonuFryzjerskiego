@@ -77,7 +77,7 @@ const Multimedia = () => {
 
   return (
     <div className="max-w-4xl mx-auto mt-10 p-6 bg-primary rounded-lg shadow-md text-secondary">
-      <h1 className="text-2xl font-bold mb-4 border-b border-gray-200 pb-2">Dodaj zdjęcia do bazy danych</h1>
+      <h1 className="text-2xl font-bold mb-4 underline-border pb-2">Dodaj zdjęcia do bazy danych</h1>
       <form onSubmit={handleSubmit}>
         <div className="mb-4">
           <label className="block font-bold">Wybierz zdjęcie:</label>
@@ -114,7 +114,7 @@ const Multimedia = () => {
         <button type="submit" className="w-full bg-button hover-bg-button text-secondary py-2 rounded font-bold">Dodaj zdjęcie</button>
       </form>
 
-      <h2 className="text-xl font-bold mt-10 mb-4">Dodane zdjęcia</h2>
+      <h2 className="text-xl font-bold mt-10 mb-4 underline-border">Dodane zdjęcia</h2>
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
         {images.map((image) => (
           <div key={image.id} className="bg-color p-4 rounded shadow-md">
@@ -138,7 +138,7 @@ const Multimedia = () => {
               Zaktualizuj
             </button>
             <button
-              className="w-full bg-button-cancel hover-bg-red-700 text-secondary py-2 rounded font-bold"
+              className="w-full bg-red-500 border border-2 border-red-300 text-secondary py-2 rounded font-bold"
               onClick={() => handleDelete(image.id)}
             >
               Usuń

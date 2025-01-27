@@ -31,13 +31,13 @@ function Store() {
         <h1 className="text-3xl font-bold mb-6 text-secondary">Sklep</h1>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {products.map((product) => (
-            <div key={product.id} className="bg-color p-6 rounded-lg shadow-lg hover:shadow-xl transition-shadow duration-300">
+            <div key={product.id} className="bg-element p-6 rounded-lg shadow-lg hover:shadow-xl transition-shadow duration-300">
               <img src={product.url} alt={product.alt_text} className="w-full h-48 object-cover rounded-lg mb-4" />
               <h2 className="text-xl text-secondary font-semibold mb-2">{product.name}</h2>
               <p className="mb-2 text-secondary">{product.description}</p>
               <p className="font-bold mb-4 text-secondary">{product.price} PLN</p>
               <button
-                className="w-full bg-button hover:bg-button-dark text-secondary py-2 rounded font-bold transition-colors duration-300"
+                className="w-full bg-button text-secondary py-2 rounded font-bold transition-colors duration-300"
                 onClick={() => addToCart({
                   id: product.id,
                   name: product.name,

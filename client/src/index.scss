@@ -3,43 +3,49 @@
 @use "tailwindcss/components";
 @use "tailwindcss/utilities";
 
-$primary-color: #2d3748;
-$secondary-color: #ffff;
-$button-color: #38a169;
-$button-color-warning: #e09304;
-$button-color-cancel: #e60909;
-$background-color: #888eba;
-$primary-color-ligth: color.adjust($primary-color, $lightness: 30%);
-$error-color: #e60909;
+$primary-color: #2d3748; /* Kolor główny*/
+$secondary-color: #ffff; /* Kolor tekstu */
+$button-color: #38a169; /* Kolor przycisków */
 
 .bg-primary {
     background-color: $primary-color;
 }
 
+.bg-color {
+    background-color: lighten($color: $primary-color, $amount: 50);
+}
+
+.bg-element {
+    background-color: lighten($color: $primary-color, $amount: 10);
+    border-color: lighten($color: $primary-color, $amount: 50);
+    border-width: 2px; 
+}
+
 .bg-input {
-    background-color: $primary-color-ligth;
+    background-color: lighten($color: $primary-color, $amount: 30);
+    border-color: lighten($color: $primary-color, $amount: 60);
+    border-width: 2px;
 }
   
 .text-secondary {
     color: $secondary-color;
 }
 
+.text-secondary-on-hover {
+    color: $secondary-color;
+
+    &:hover {
+        color: darken($color:$secondary-color, $amount: 30);
+    }
+}
+
+.underline-border {
+    padding-bottom: 2px;
+    border-bottom: 1px solid $secondary-color;
+}
+
 .bg-button {
     background-color: $button-color;
-}
-
-.bg-button-warning {
-    background-color: $button-color-warning;
-}
-
-.bg-button-cancel {
-    background-color: $error-color;
-}
-
-.bg-color {
-    background-color: $background-color;
-}
-
-.error-color {
-    color: $error-color;
+    border-color: lighten($color: $button-color, $amount: 40);
+    border-width: 2px;
 }
