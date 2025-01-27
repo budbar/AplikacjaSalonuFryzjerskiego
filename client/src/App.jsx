@@ -17,6 +17,7 @@ import Cart from './pages/Cart';
 import ProductManagement from './pages/ProductManagement';
 import { CartProvider } from './context/CartContext';
 import Checkout from "./pages/Checkout";
+import Forum from "./pages/Forum";
 
 function App() {
   return (
@@ -40,7 +41,7 @@ function App() {
               <Route path="/checkout" element={<Checkout/>} />
               <Route path="/store" element={<Store />} />
               <Route path="/cart" element={<Cart/>} />
-
+              <Route path="/forum" element={<Forum/>} />
             </Routes>
           </div>
           <Footer />

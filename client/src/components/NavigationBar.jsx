@@ -50,6 +50,7 @@ const NavigationBar = () => {
         </div>
         <ul className={`lg:flex space-x-16 ${isOpen ? 'block' : 'hidden'} lg:block`}>
           <li><Link to="/home" className="text-secondary-on-hover">Strona główna</Link></li>
+          <li><Link to="/forum" className="text-secondary-on-hover">Forum</Link></li>
           <li><Link to="/store" className="text-secondary-on-hover">Sklep</Link></li>
           {/* <li><Link to="/about" className="text-secondary-on-hover">O nas</Link></li> */}
           {/* <li><Link to="/services" className="text-secondary-on-hover">Usługi</Link></li> */}
