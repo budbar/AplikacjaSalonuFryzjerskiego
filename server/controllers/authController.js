@@ -59,6 +59,7 @@ export const login = async (req, res) => {
             last_name: user.last_name,
             email: user.email,
             level: user.level,
+            assigned_category: user.assigned_category,
             token: token,
         };
 

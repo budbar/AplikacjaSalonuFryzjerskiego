@@ -91,6 +91,7 @@ const CommentSection = ({ postId, adminPanel }) => {
         });
 
         setContent("");
+        window.location.reload();
       }
     } catch (error) {
       console.error("Błąd dodawania komentarza: ", error);

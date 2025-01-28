@@ -43,7 +43,7 @@ const PostItem = ({ post }) => {
   useEffect(() => {
     const fetchCommentsCount = async () => {
       try {
-        const response = await axios.get(`http://localhost:8080/posts-management/get-comments-count/${post.id}`);
+        const response = await axios.get(`http://localhost:8080/posts-management/get-accepted-comments-count/${post.id}`);
         setCommentsCount(response.data[0].count);
       } catch (error) {
         console.error("Błąd pobierania liczby komentarzy: ", error);

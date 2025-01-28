@@ -71,12 +71,36 @@ export const getAcceptedPosts = async (req, res) => {
   }
 };
 
-export const getCommentsCount = async (req, res) => {
+export const getPostsByCategory = async (req, res) => {
+  const { category } = req.params;
+
+  try {
+    const result = await query("SELECT p.id, p.title, p.description, p.category, p.status, p.create_date, p.user_id, u.first_name, u.last_name FROM posts p JOIN users u ON p.user_id = u.id WHERE p.category = $1", [ category ]);
+    res.status(200).json(result.rows);
+  } catch (error) {
+    console.error("Błąd pobierania postów z danej kategorii: ", error);
+    res.status(500).json({ message: "Błąd pobierania postów z danej kategorii." });
+  }
+};
+
+export const getAcceptedCommentsCount = async (req, res) => {
   const { id } = req.params;
 
   try {
     const acceptedStatus = PostStatusEnum.Accepted;
     const result = await query("SELECT COUNT(*) FROM comments WHERE post_id = $1 AND status = $2", [ id, acceptedStatus ]);
+    res.status(200).json(result.rows);
+  } catch (error) {
+    console.error("Błąd pobierania liczby komentarzy: ", error);
+    res.status(500).json({ message: "Błąd pobierania liczby komentarzy." });
+  }
+};
+
+export const getCommentsCount = async (req, res) => {
+  const { id } = req.params;
+
+  try {
+    const result = await query("SELECT COUNT(*) FROM comments WHERE post_id = $1", [ id ]);
     res.status(200).json(result.rows);
   } catch (error) {
     console.error("Błąd pobierania liczby komentarzy: ", error);

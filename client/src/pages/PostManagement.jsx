@@ -103,8 +103,17 @@ const PostManagement = () => {
   useEffect(() => {
     const fetchPosts = async () => {
       try {
-        const response = await axios.get("http://localhost:8080/posts-management/get-posts");
-        setPosts(response.data.map(post => ({
+        let posts = [];
+
+        if(user.level == 1) {
+          const response = await axios.get("http://localhost:8080/posts-management/get-posts");
+          posts = response.data;
+        } else if (user.level == 2) {
+          const response = await axios.get(`http://localhost:8080/posts-management/get-posts-by-category/${user.assigned_category}`);
+          posts = response.data;
+        }
+        
+        setPosts(posts.map(post => ({
           ...post,
           status: post.status || PostStatusEnum.ForVeryfication,
         })));
@@ -114,7 +123,7 @@ const PostManagement = () => {
     };
 
     fetchPosts();
-  }, []);
+  }, [user]);
 
   useEffect(() => {
     const fetchCommentsCount = async () => {
