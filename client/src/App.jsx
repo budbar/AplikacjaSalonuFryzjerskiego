@@ -20,6 +20,7 @@ import Checkout from "./pages/Checkout";
 import Forum from "./pages/Forum";
 import PostManagement from './pages/PostManagement';
 import ModeratorPanel from './pages/ModeratorPanel';
+import Notifications from './pages/Notifications';
 
 function App() {
   return (
@@ -46,6 +47,7 @@ function App() {
               <Route path="/forum" element={<Forum/>} />
               <Route path="/post-management" element={<PostManagement/>} />
               <Route path="/moderator-panel" element={<ModeratorPanel/>} />
+              <Route path="/notifications" element={<Notifications/>} />
             </Routes>
           </div>
           <Footer />

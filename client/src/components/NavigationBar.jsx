@@ -72,6 +72,14 @@ const NavigationBar = () => {
                     <div className="py-1">
                       <MenuItem>
                         <Link
+                          to="/notifications"
+                          className="block px-4 py-2 text-sm text-secondary text-secondary-on-hover"
+                        >
+                          Powiadomienia
+                        </Link>
+                      </MenuItem>
+                      <MenuItem>
+                        <Link
                           to="/cart"
                           className="block px-4 py-2 text-sm text-secondary text-secondary-on-hover"
                         >
