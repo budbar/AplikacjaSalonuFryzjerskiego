@@ -70,3 +70,16 @@ export const getAcceptedPosts = async (req, res) => {
     res.status(500).json({ message: "Błąd pobierania postów." });
   }
 };
+
+export const getCommentsCount = async (req, res) => {
+  const { id } = req.params;
+
+  try {
+    const acceptedStatus = PostStatusEnum.Accepted;
+    const result = await query("SELECT COUNT(*) FROM comments WHERE post_id = $1 AND status = $2", [ id, acceptedStatus ]);
+    res.status(200).json(result.rows);
+  } catch (error) {
+    console.error("Błąd pobierania liczby komentarzy: ", error);
+    res.status(500).json({ message: "Błąd pobierania liczby komentarzy." });
+  }
+};

@@ -113,22 +113,25 @@ const CommentSection = ({ postId, adminPanel }) => {
 
   return (
     <div className="mt-4 space-y-4 text-secondary">
-      <div className="bg-input p-4 rounded-lg shadow-sm">
-        <textarea
-          className="w-full p-2 bg-input rounded-lg focus:outline-none focus:ring-2 focus:ring-primary"
-          rows="3"
-          value={content}
-          onChange={(e) => setContent(e.target.value)}
-        ></textarea>
-        <button
-          className="mt-2 px-4 py-2 bg-button rounded-lg hover:bg-primary-dark transition"
-          onClick={handleSubmit}
-        >
-          Dodaj komentarz
-        </button>
-      </div>
+      {
+        user && (
+          <div className="bg-input p-4 rounded-lg shadow-sm">
+            <textarea
+              className="w-full p-2 bg-input rounded-lg focus:outline-none focus:ring-2 focus:ring-primary"
+              rows="3"
+              value={content}
+              onChange={(e) => setContent(e.target.value)}
+            ></textarea>
+            <button
+              className="mt-2 px-4 py-2 bg-button rounded-lg hover:bg-primary-dark transition"
+              onClick={handleSubmit}
+            >
+              Dodaj komentarz
+            </button>
+          </div>
+        )
+      }
 
-      {/* Lista komentarzy */}
       {comments.map((comment) => (
         <div key={comment.id} className="bg-input rounded-lg p-4">
           <div className="flex items-start justify-between">

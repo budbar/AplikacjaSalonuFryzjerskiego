@@ -1,8 +1,9 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { MessageSquare, Clock, ChevronUp, ChevronDown } from "lucide-react";
 import { EditorContent, useEditor } from "@tiptap/react";
 import StarterKit from "@tiptap/starter-kit";
 import CommentSection from "./CommentSection";
+import axios from "axios";
 
 function RefactorCategory(category) {
   switch (category) {
@@ -27,7 +28,7 @@ function RefactorCategory(category) {
 
 const PostItem = ({ post }) => {
   const [expandedComments, setExpandedComments] = useState(false);
-  const [commentsCount, setCommentsCount] = useState(post.commentsCount || 0);
+  const [commentsCount, setCommentsCount] = useState(0);
 
   const editor = useEditor({
     content: post.description,
@@ -39,9 +40,18 @@ const PostItem = ({ post }) => {
     setExpandedComments((prev) => !prev);
   };
 
-  const handleAddComment = (newComment) => {
-    setCommentsCount((prev) => prev + 1);
-  };
+  useEffect(() => {
+    const fetchCommentsCount = async () => {
+      try {
+        const response = await axios.get(`http://localhost:8080/posts-management/get-comments-count/${post.id}`);
+        setCommentsCount(response.data[0].count);
+      } catch (error) {
+        console.error("Błąd pobierania liczby komentarzy: ", error);
+      }
+    };
+
+    fetchCommentsCount();
+  }, []);
 
   return (
     <div

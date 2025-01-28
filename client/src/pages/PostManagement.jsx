@@ -12,6 +12,7 @@ import OrderedList from "@tiptap/extension-ordered-list";
 import { MessageSquare, Clock, ChevronDown, ChevronUp } from 'lucide-react';
 import { PostStatusEnum } from "../../../server/enums/PostStatusEnum";
 import CommentSection from "../components/CommentSection";
+import EmptyPageStatement from "../components/EmptyPageStatement";
 
 const PostEditor = ({ content, onChange }) => {
   const editor = useEditor({
@@ -173,6 +174,12 @@ const PostManagement = () => {
       [postId]: !prev[postId]
     }));
   };
+
+  if(!user) {
+    return (
+      <EmptyPageStatement statement={"Ładowanie..."} />
+    );
+  }
 
   return (
     <div className="max-w-4xl mx-auto mt-10 p-6 bg-primary rounded-lg shadow-md text-secondary">
