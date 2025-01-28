@@ -121,6 +121,22 @@ const NavigationBar = () => {
                               Ustawienia slidera
                             </Link>
                           </MenuItem>
+                          <MenuItem>
+                            <Link
+                              to="/post-management"
+                              className="block px-4 py-2 text-sm text-secondary text-secondary-on-hover"
+                            >
+                              Zarządzanie postami
+                            </Link>
+                          </MenuItem>
+                          <MenuItem>
+                            <Link
+                              to="/moderator-panel"
+                              className="block px-4 py-2 text-sm text-secondary text-secondary-on-hover"
+                            >
+                              Dodaj moderatora
+                            </Link>
+                          </MenuItem>
                         </>
                       ) : (
                         <></>

@@ -28,7 +28,7 @@ function Store() {
   return (
     products.length > 0 ? (
       <div className="container mx-auto max-w-screen-xl mt-10 bg-primary rounded-lg px-4 py-4">
-        <h1 className="text-3xl font-bold mb-6 text-secondary">Sklep</h1>
+        <h1 className="text-3xl font-bold mb-6 text-secondary underline-border">Sklep</h1>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {products.map((product) => (
             <div key={product.id} className="bg-element p-6 rounded-lg shadow-lg hover:shadow-xl transition-shadow duration-300">

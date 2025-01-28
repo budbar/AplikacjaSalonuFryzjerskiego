@@ -3,7 +3,7 @@ import jwt from "jsonwebtoken";
 import { query } from "../database.js";
 
 export const register = async (req, res) => {
-    const { firstName, lastName, email, password, accountLevel} = req.body;
+    const { firstName, lastName, email, password, accountLevel, category} = req.body;
 
     try {
         //Sprawdzamy czy użytkownik o podanym emailu już istnieje
@@ -15,8 +15,8 @@ export const register = async (req, res) => {
         const hashedPassword = await bcrypt.hash(password, 10);
 
         const newUser = await query(
-            "INSERT INTO users(first_name, last_name, email, password, level) VALUES($1, $2, $3, $4, $5) RETURNING *",
-            [firstName, lastName, email, hashedPassword, accountLevel]
+            "INSERT INTO users(first_name, last_name, email, password, level, assigned_category) VALUES($1, $2, $3, $4, $5, $6) RETURNING *",
+            [firstName, lastName, email, hashedPassword, accountLevel, category]
         );
 
         const token = jwt.sign({ id: newUser.rows[0].id }, process.env.JWT_SECRET, { expiresIn: "1h" });

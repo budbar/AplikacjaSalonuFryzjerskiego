@@ -9,6 +9,7 @@ import sliderRoutes from "./routes/sliderRoutes.js";
 import productManagementRoutes from "./routes/productManagementRoutes.js";
 import checkoutRoutes from "./routes/checkoutRoutes.js";
 import ordersRoutes from "./routes/ordersRoutes.js";
+import postManagementRoutes from "./routes/postManagementRoutes.js";
 
 dotenv.config();
 
@@ -36,6 +37,7 @@ app.use("/slider-settings", sliderRoutes);
 app.use("/products-management", productManagementRoutes);
 app.use("/checkout", checkoutRoutes);
 app.use("/orders", ordersRoutes);
+app.use("/posts-management", postManagementRoutes);
 
 let cart = [];
 
