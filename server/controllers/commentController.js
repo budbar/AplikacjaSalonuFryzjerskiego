@@ -2,38 +2,36 @@ import { query } from "../database.js";
 import { CommentStatusEnum }from "../enums/CommentStatusEnum.js";
 
 export const addComment = async (req, res) => {
-  const { title, description, category, user_id } = req.body;
+  const { content, post_id, user_id, status} = req.body;
 
-  const status = PostStatusEnum.ForVeryfication;
 
   try {
     const result = await query(
-      "INSERT INTO posts (title, description, category, status, user_id) VALUES ($1, $2, $3, $4, $5) RETURNING *",
-      [title, description, category, status, user_id]
+      "INSERT INTO comments (content, post_id, user_id, status) VALUES ($1, $2, $3, $4) RETURNING *",
+      [content, post_id, user_id, status]
     );
-
 
     res.status(201).json(result.rows[0]);
   } catch (error) {
-    console.error("Błąd przy dodawaniu postu do bazy: ", error);
-    res.status(500).json({ message: "Błąd przy dodawaniu postu do bazy." });
+    console.error("Błąd przy dodawaniu komentarza do bazy: ", error);
+    res.status(500).json({ message: "Błąd przy dodawaniu komentarza do bazy." });
   }
 };
 
 export const updateComment = async (req, res) => {
     const { id } = req.params;
-    const { title, description, category, status } = req.body; 
+    const { status } = req.body; 
 
     try {
         const result = await query(
-            "UPDATE posts SET title = $1, description = $2, category = $3, status = $4 WHERE id = $5 RETURNING *", 
-            [title, description, category, status, id]
+            "UPDATE comments SET status = $1 WHERE id = $2 RETURNING *", 
+            [status, id]
         );
 
         res.status(200).json(result.rows[0]);
     } catch (error) {
-        console.error("Błąd przy aktualizacji danych posta: ", error);
-        res.status(500).json({ message: "Błąd przy aktualizacji danych posta." });
+        console.error("Błąd przy aktualizacji statusu komentarza: ", error);
+        res.status(500).json({ message: "Błąd przy aktualizacji statusu komentarza." });
     }
 };
 
@@ -50,19 +48,25 @@ export const deleteComment = async (req, res) => {
 };
 
 export const getComments = async (req, res) => {
-  try {
-    const result = await query("SELECT p.id, p.title, p.description, p.category, p.status, p.create_date, p.user_id, u.first_name, u.last_name FROM posts p JOIN users u ON p.user_id = u.id");
-    res.status(200).json(result.rows);
-  } catch (error) {
-    console.error("Błąd pobierania postów: ", error);
-    res.status(500).json({ message: "Błąd pobierania postów." });
-  }
+    const { id } = req.params;
+
+    try {
+        const result = await query("SELECT c.id, c.content, c.post_id, c.status, c.create_date, c.user_id, u.first_name, u.last_name FROM comments c JOIN users u ON c.user_id = u.id WHERE c.post_id = $1", [ id ]);
+    
+        res.status(200).json(result.rows);
+    } catch (error) {
+        console.error("Błąd pobierania postów: ", error);
+        res.status(500).json({ message: "Błąd pobierania postów." });
+    }
 };
 
 export const getAcceptedComments = async (req, res) => {
-  try {
-    const acceptedStatus = PostStatusEnum.Accepted;
-    const result = await query("SELECT p.id, p.title, p.description, p.category, p.status, p.create_date, p.user_id, u.first_name, u.last_name FROM posts p JOIN users u ON p.user_id = u.id WHERE p.status = $1", [acceptedStatus]);
+    const { id } = req.params;
+    const acceptedStatus = CommentStatusEnum.Accepted;
+
+    try {
+    const result = await query("SELECT c.id, c.content, c.post_id, c.status, c.create_date, c.user_id, u.first_name, u.last_name FROM comments c JOIN users u ON c.user_id = u.id WHERE c.post_id = $1 AND c.status = $2", [ id, acceptedStatus ]);
+    
     res.status(200).json(result.rows);
   } catch (error) {
     console.error("Błąd pobierania postów: ", error);

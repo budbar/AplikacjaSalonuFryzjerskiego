@@ -40,7 +40,6 @@ const PostItem = ({ post }) => {
   };
 
   const handleAddComment = (newComment) => {
-    // Aktualizuj licznik komentarzy (lub inne operacje związane z nowym komentarzem)
     setCommentsCount((prev) => prev + 1);
   };
 
@@ -91,7 +90,7 @@ const PostItem = ({ post }) => {
       </button>
 
       {expandedComments && (
-        <CommentSection postId={post.id} onAddComment={handleAddComment} />
+        <CommentSection postId={post.id} adminPanel="false"/>
       )}
     </div>
   );

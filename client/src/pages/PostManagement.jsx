@@ -332,7 +332,7 @@ const PostManagement = () => {
             </button>
 
             {expandedComments[post.id] && (
-              <CommentSection postId={post.id} />
+              <CommentSection postId={post.id} adminPanel="true"/>
             )}
 
           </div>
