@@ -12,6 +12,27 @@ import BulletList from "@tiptap/extension-bullet-list";
 import OrderedList from "@tiptap/extension-ordered-list";
 import axios from "axios";
 
+function RefactorCategory(category) {
+    switch (category) {
+        case "1":
+            return "Usługi";
+        case "2":
+            return "Promocje";
+        case "3":
+            return "Porady i wskazówki";
+        case "4":
+            return "Zadowoleni klienci";
+        case "5":
+            return "Wydarzenia w salonie";
+        case "6":
+            return "Zespół fryzjerów";
+        case "7":
+            return "Nowości w salonie";
+        default:
+            return "Nieznana kategoria";
+    }
+}
+
 const PostEditor = ({ content, onChange }) => {
     const editor = useEditor({
         extensions: [
@@ -107,6 +128,15 @@ const PostsList = ({ posts = [] }) => {
             user_id: user.id,
           });
           
+          const text = "Dodano post. Tytuł: '" + title + "'. Kategoria: '" + RefactorCategory(category) + "'. Autor: '" + user.first_name + " " + user.last_name + "'."; 
+
+          await axios.post("http://localhost:8080/notification/add-notification", {
+            text: text,
+            category: category,
+            user_id: user.id,
+            account_level: user.level,
+          });
+
           setTitle('');
           setDescription('');
           setCategory('1');

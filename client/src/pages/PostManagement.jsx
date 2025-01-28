@@ -14,6 +14,38 @@ import { PostStatusEnum } from "../../../server/enums/PostStatusEnum";
 import CommentSection from "../components/CommentSection";
 import EmptyPageStatement from "../components/EmptyPageStatement";
 
+function RefactorCategory(category) {
+  switch (category) {
+      case "1":
+          return "Usługi";
+      case "2":
+          return "Promocje";
+      case "3":
+          return "Porady i wskazówki";
+      case "4":
+          return "Zadowoleni klienci";
+      case "5":
+          return "Wydarzenia w salonie";
+      case "6":
+          return "Zespół fryzjerów";
+      case "7":
+          return "Nowości w salonie";
+      default:
+          return "Nieznana kategoria";
+  }
+}
+
+function RefactorStatus(status) {
+  switch (status) {
+      case "1":
+          return "Zaakceptowany";
+      case "2":
+          return "Do weryfikacji";
+      case "3":
+          return "Usunięty";
+  }
+}
+
 const PostEditor = ({ content, onChange }) => {
   const editor = useEditor({
     extensions: [
@@ -105,6 +137,8 @@ const PostManagement = () => {
       try {
         let posts = [];
 
+        if (!user || user.level === undefined) return;
+
         if(user.level == 1) {
           const response = await axios.get("http://localhost:8080/posts-management/get-posts");
           posts = response.data;
@@ -177,13 +211,22 @@ const PostManagement = () => {
     }
   };
 
-  const handleUpdate = async (id, updatedTitle, updatedDescription, updatedCategory, updatedStatus) => {
+  const handleUpdate = async (id, updatedTitle, updatedDescription, updatedCategory, updatedStatus, userId) => {
     try {
       const response = await axios.put(`http://localhost:8080/posts-management/update-post/${id}`, {
             title: updatedTitle,
             description: updatedDescription,
             category: updatedCategory,
             status: updatedStatus
+      });
+
+      const text = "Zmieniono status twojego posta. Tytuł: '" + updatedTitle + "'. Kategoria: '" + RefactorCategory(updatedCategory) + "'. Aktualny status: '" + RefactorStatus(updatedStatus) + "'."; 
+
+      await axios.post("http://localhost:8080/notification/add-notification", {
+        text: text,
+        category: category,
+        user_id: userId,
+        account_level: user.level,
       });
 
       setPosts(posts.map((post) => (post.id === id ? response.data : post)));
@@ -345,7 +388,7 @@ const PostManagement = () => {
             <div className="flex gap-2">
               <button
                 className="flex-1 bg-button hover:opacity-90 text-secondary py-2 rounded font-bold"
-                onClick={() => handleUpdate(post.id, post.title, post.description, post.category, post.status)}
+                onClick={() => handleUpdate(post.id, post.title, post.description, post.category, post.status, post.user_id)}
               >
                 Zaktualizuj
               </button>

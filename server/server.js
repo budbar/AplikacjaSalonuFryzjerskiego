@@ -11,6 +11,7 @@ import checkoutRoutes from "./routes/checkoutRoutes.js";
 import ordersRoutes from "./routes/ordersRoutes.js";
 import postManagementRoutes from "./routes/postManagementRoutes.js";
 import commentRoutes from "./routes/commentRoutes.js";
+import notificationsRoutes from "./routes/notificationsRoutes.js"
 
 dotenv.config();
 
@@ -40,6 +41,7 @@ app.use("/checkout", checkoutRoutes);
 app.use("/orders", ordersRoutes);
 app.use("/posts-management", postManagementRoutes);
 app.use("/comment", commentRoutes);
+app.use("/notification", notificationsRoutes);
 
 let cart = [];
 
