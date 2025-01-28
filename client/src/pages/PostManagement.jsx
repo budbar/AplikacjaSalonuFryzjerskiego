@@ -236,15 +236,6 @@ const PostManagement = () => {
     }
   };
 
-  const handleDelete = async (id) => {
-    try {
-      await axios.delete(`http://localhost:8080/posts-management/delete-post/${id}`);
-      setPosts(posts.filter((post) => post.id !== id));
-    } catch (error) {
-      console.error("Błąd usuwania posta: ", error);
-    }
-  };
-
   const [expandedComments, setExpandedComments] = useState({});
 
   const toggleComments = (postId) => {
@@ -391,12 +382,6 @@ const PostManagement = () => {
                 onClick={() => handleUpdate(post.id, post.title, post.description, post.category, post.status, post.user_id)}
               >
                 Zaktualizuj
-              </button>
-              <button
-                className="flex-1 bg-red-500 hover:bg-red-600 text-secondary py-2 rounded font-bold"
-                onClick={() => handleDelete(post.id)}
-              >
-                Usuń
               </button>
             </div>
 
