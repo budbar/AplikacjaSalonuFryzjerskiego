@@ -94,7 +94,7 @@ const PostItem = ({ post }) => {
         ) : (
           <>
             <ChevronDown className="w-5 h-5" />
-            Pokaż komentarze ({commentsCount})
+            Pokaż komentarze
           </>
         )}
       </button>

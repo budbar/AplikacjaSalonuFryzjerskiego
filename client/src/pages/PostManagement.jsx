@@ -68,6 +68,7 @@ const PostManagement = () => {
   const [title, setTitle] = useState('');
   const [description, setDescription] = useState('');
   const [category, setCategory] = useState('1');
+  const [commentsCount, setCommentsCount] = useState(0);
 
   const editor = useEditor({
     extensions: [
@@ -114,6 +115,32 @@ const PostManagement = () => {
 
     fetchPosts();
   }, []);
+
+  useEffect(() => {
+    const fetchCommentsCount = async () => {
+      try {
+        const counts = await Promise.all(
+          posts.map(async (post) => {
+            const response = await axios.get(`http://localhost:8080/posts-management/get-comments-count/${post.id}`);
+            return { id: post.id, count: response.data[0].count };
+          })
+        );
+        
+        const countsObject = counts.reduce((acc, curr) => {
+          acc[curr.id] = curr.count;
+          return acc;
+        }, {});
+        
+        setCommentsCount(countsObject);
+      } catch (error) {
+        console.error("Błąd pobierania liczby komentarzy: ", error);
+      }
+    };
+  
+    if (posts.length > 0) {
+      fetchCommentsCount();
+    }
+  }, [posts]);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -302,7 +329,7 @@ const PostManagement = () => {
               </span>
               <span className="flex items-center gap-1">
                 <MessageSquare className="w-4 h-4" />
-                {post.commentsCount || 0} komentarzy
+                {commentsCount[post.id] || 0} komentarzy
               </span>
             </div>
 
@@ -333,7 +360,7 @@ const PostManagement = () => {
               ) : (
                 <>
                   <ChevronDown className="w-5 h-5" />
-                  Pokaż komentarze (3)
+                  Pokaż komentarze
                 </>
               )}
             </button>
