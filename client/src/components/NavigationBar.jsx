@@ -95,6 +95,21 @@ const NavigationBar = () => {
                         </Link>
                       </MenuItem>
 
+                      {
+                        user.level == 1 || user.level == 2 ? (
+                          <MenuItem>
+                            <Link
+                              to="/post-management"
+                              className="block px-4 py-2 text-sm text-secondary text-secondary-on-hover"
+                            >
+                              Zarządzanie postami
+                            </Link>
+                          </MenuItem>
+                        ) : (
+                          <></>
+                        )
+                      }
+
                       { user.level == 1 ? (
                         <>
                           <MenuItem>
@@ -119,14 +134,6 @@ const NavigationBar = () => {
                               className="block px-4 py-2 text-sm text-secondary text-secondary-on-hover"
                             >
                               Ustawienia slidera
-                            </Link>
-                          </MenuItem>
-                          <MenuItem>
-                            <Link
-                              to="/post-management"
-                              className="block px-4 py-2 text-sm text-secondary text-secondary-on-hover"
-                            >
-                              Zarządzanie postami
                             </Link>
                           </MenuItem>
                           <MenuItem>
